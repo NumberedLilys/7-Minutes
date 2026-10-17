@@ -1,4 +1,5 @@
 import pygame
+import sys
 
 pygame.init()
 
@@ -23,6 +24,7 @@ def ghost(x, y):
 
 x =  (display_width * 0.15)
 y = (display_height * 0.15)
+        
 
 while not crashed:
 
