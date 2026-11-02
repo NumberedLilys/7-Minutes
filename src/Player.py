@@ -10,7 +10,7 @@ class Player(pygame.sprite.Sprite):
 
         self.rect.x = 100
         self.rect.y = 100
-        self.speed = 5
+        self.speed = 2
 
 # ===============Updates based on player movement left/right===============
     def update(self):
