@@ -1,7 +1,7 @@
 import pygame
 import sys
-import pathlib
 from Player import Player
+from Load import load_animations
 
 # ======================basic setup==================
 
@@ -9,44 +9,36 @@ all_sprites = pygame.sprite.Group()
 
 pygame.init()
 
-screen = pygame.display.set_mode((800, 600))
+SCREEN_WIDTH, SCREEN_HEIGHT = 1280, 720
+
+screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT)) # 1280, 720 default
 clock = pygame.time.Clock()
 
-# ==========================Loading asset from assets==========================
-current_dir = pathlib.Path(__file__).parent
-image_path = current_dir.parent.joinpath("assets", "MC-SCREENSHOT.png")
-
-try:
-    player_image = pygame.image.load(str(image_path)).convert_alpha()
-except FileNotFoundError:
-    print(f"Error: Could not find image at {image_path}. Using placeholder.")
-    player_image = pygame.Surface((64, 64))
-    player_image.fill((0, 255, 0))
-
 # ============================setting up display==============================
-pygame.display.set_caption('Random title')
+pygame.display.set_caption('7-Minutes')
 
-my_character = Player(player_image, 375, 275)
-my_character.rect.x = 375
-my_character.rect.y = 175
+animations = load_animations((128, 128))
 
+my_character = Player(animations, 375, 275, SCREEN_WIDTH)
+
+all_sprites = pygame.sprite.Group()
 all_sprites.add(my_character)
 
 running = True
 
 while running:
+    dt = clock.tick(60)
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            pygame.quit(); sys.exit()
             running = False
 
-    all_sprites.update()
+    all_sprites.update(dt)
 
     screen.fill((0, 0, 0))
 
     all_sprites.draw(screen) # "draws" sprites in group onto screen
     pygame.display.flip()
 
-    clock.tick(60)
 pygame.quit()
 sys.exit()
