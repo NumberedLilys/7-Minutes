@@ -6,6 +6,8 @@ MAYNNE_DIR = ROOT_DIR / "assets" / "characters" / "Maynne"
 WALK_DIR = MAYNNE_DIR / "Walk"
 IDLE_DIR = MAYNNE_DIR / "Idle"
 
+BACKGROUND_DIR = ROOT_DIR / "assets" / "environments"
+
 def load_image(name, size, path):
     path = path.joinpath(name)
     try:
@@ -30,3 +32,4 @@ def load_animations(size):
         "idle_right": idle_right,
         "idle_left": idle_left,
     }
+
