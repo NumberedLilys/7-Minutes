@@ -7,6 +7,8 @@ WALK_DIR = MAYNNE_DIR / "Walk"
 IDLE_DIR = MAYNNE_DIR / "Idle"
 
 BACKGROUND_DIR = ROOT_DIR / "assets" / "environments"
+START_DIR = BACKGROUND_DIR / "StartScreen"
+BUTTON_DIR = START_DIR / "Buttons"
 
 def load_image(name, size, path):
     path = path.joinpath(name)
