@@ -441,14 +441,15 @@ def AudraOption(index):
 
 def drawMenu(options, heading):
     heading_surface = font.render(heading, True, DIALOGUE_COLOUR)
-    canvas.blit(heading_surface, (25, 20))
+    canvas.blit(heading_surface, (25, 87))
+    
     choiceRects = []
     
     choiceX = 25
-    choiceY = 42
+    choiceY = 104
     choiceWidth = 270
-    choiceHeight = 17
-    choiceGap = 3
+    choiceHeight = 14
+    choiceGap = 2
     
     for i, option in enumerate(options):
         rect = pygame.Rect(choiceX, choiceY + i * (choiceHeight + choiceGap), choiceWidth,choiceHeight)
@@ -468,7 +469,7 @@ def drawMenu(options, heading):
         pygame.draw.rect(canvas, bonder_colour, rect, 1)
         
         option_surface = font.render(marker + " " + option, True, DIALOGUE_COLOUR)
-        canvas.blit(option_surface,(rect.x + 5, rect.y + 3))
+        canvas.blit(option_surface,(rect.x + 5, rect.y + 1))
         
     return choiceRects
     
@@ -644,11 +645,9 @@ while running:
         canvas.blit(arrow, (arrowX, arrowY))
         
     elif mode == "room_menu":
-        canvas.blit(dialogueBox, (boxX, boxY))
         drawMenu(roomOptions, "What would you like to do?")
         
     elif mode == "flowers_choice":
-        canvas.blit(dialogueBox, (boxX, boxY))
         drawMenu(
             ["Throw them away",
             "Leave them"],
@@ -656,19 +655,15 @@ while running:
         )
         
     elif mode == "kitchen_menu":
-        canvas.blit(dialogueBox, (boxX, boxY))
         drawMenu(kitchenOptions, "What would you like to do?")
         
     elif mode == "food_choice":
-        canvas.blit(dialogueBox, (boxX, boxY))        
         drawMenu(foodOptions, "What should Maynne do?")
         
     elif mode == "audra_choice":
-        canvas.blit(dialogueBox, (boxX, boxY))        
         drawMenu(audraOptions, "How should Maynne respond?")
         
     elif mode == "bus":
-        canvas.blit(dialogueBox, (boxX, boxY))
         end_text = font.render("The bus pulls away...", True, DIALOGUE_COLOUR)
         canvas.blit(end_text, (boxX + 12, boxY + 12))    
 
