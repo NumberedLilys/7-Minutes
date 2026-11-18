@@ -1,5 +1,4 @@
 import pygame
-import sys
 
 class Background:
     def __init__(self, image, screen_width, screen_height,

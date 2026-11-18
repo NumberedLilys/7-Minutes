@@ -3,6 +3,7 @@ import sys
 from Player import Player
 from Load import load_animations
 from Backgrounds import create_backgrounds, create_buttons
+from Items import create_bedroom_items
 
 # ====================== basic setup ==================
 
@@ -28,6 +29,8 @@ animations = load_animations((225, 256)) # 128, 128 (character size)
 backgrounds = create_backgrounds(SCREEN_WIDTH, SCREEN_HEIGHT)
 # current_background = "opening_screen"
 
+bedroom_items = create_bedroom_items()
+
 my_character = Player(animations, MAYNNE_X, MAYNNE_Y, SCREEN_WIDTH)
 
 all_sprites = pygame.sprite.Group()
@@ -38,13 +41,22 @@ def game():
 
     while True:
         dt = clock.tick(60)
+        
+        backgrounds[current_background].draw(screen) # draws current background onto screen
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
 
+            if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+                for item in bedroom_items.values():
+                    item.check_click(event.pos)
+
         all_sprites.update(dt)
+
+        for item in bedroom_items:
+            bedroom_items[item].draw(screen)
 
         # ============================ determining current room, adjusting ==============================
 
@@ -62,8 +74,6 @@ def game():
                 my_character.rect.left = SCREEN_WIDTH - 50 - my_character.rect.width
             else:
                 my_character.rect.left = 50
-
-        backgrounds[current_background].draw(screen) # draws current background onto screen
 
         # ============================ adding character sprite ==============================
 
