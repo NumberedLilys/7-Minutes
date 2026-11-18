@@ -7,6 +7,7 @@ WALK_DIR = MAYNNE_DIR / "Walk"
 IDLE_DIR = MAYNNE_DIR / "Idle"
 
 BACKGROUND_DIR = ROOT_DIR / "assets" / "environments"
+BEDROOM_DIR = BACKGROUND_DIR / "Bedroom"
 START_DIR = BACKGROUND_DIR / "StartScreen"
 BUTTON_DIR = START_DIR / "Buttons"
 

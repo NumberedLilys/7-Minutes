@@ -10,9 +10,11 @@ all_sprites = pygame.sprite.Group()
 
 pygame.init()
 
-SCREEN_WIDTH, SCREEN_HEIGHT = 1280, 720
+SCREEN_WIDTH, SCREEN_HEIGHT = 1280, 720 # 1280, 720 --> Default
 
 BUTTON_WIDTH, BUTTON_HEIGHT = 355, 90
+
+MAYNNE_X, MAYNNE_Y = 575, 475 # character location on X, Y
 
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT)) # 1280, 720 default
 clock = pygame.time.Clock()
@@ -21,12 +23,12 @@ clock = pygame.time.Clock()
 
 pygame.display.set_caption('7-Minutes')
 
-animations = load_animations((128, 128))
+animations = load_animations((225, 256)) # 128, 128 (character size)
 
 backgrounds = create_backgrounds(SCREEN_WIDTH, SCREEN_HEIGHT)
 # current_background = "opening_screen"
 
-my_character = Player(animations, 375, 275, SCREEN_WIDTH)
+my_character = Player(animations, MAYNNE_X, MAYNNE_Y, SCREEN_WIDTH)
 
 all_sprites = pygame.sprite.Group()
 all_sprites.add(my_character)

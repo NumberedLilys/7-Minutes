@@ -1,5 +1,5 @@
 from Background import Background
-from Load import load_image, BACKGROUND_DIR, START_DIR, BUTTON_DIR
+from Load import load_image, BACKGROUND_DIR, START_DIR, BUTTON_DIR, BEDROOM_DIR
 
 def create_backgrounds(screen_width, screen_height):
     size = (screen_width, screen_height)
@@ -11,7 +11,7 @@ def create_backgrounds(screen_width, screen_height):
         ),
 
         "bedroom": Background(
-            load_image("temp-background-1.jpg", size, BACKGROUND_DIR),
+            load_image("Background.png", size, BEDROOM_DIR),
             1280, 720,
             right_target="living_room"
         ),
