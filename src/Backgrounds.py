@@ -13,14 +13,14 @@ def create_backgrounds(screen_width, screen_height):
         "bedroom": Background(
             load_image("Background.png", size, BEDROOM_DIR),
             1280, 720,
-            right_target="living_room"
+            right_target="kitchen"
         ),
 
-        "living_room": Background(
+        "kitchen": Background(
             load_image("temp-background-2.jpg", size, BACKGROUND_DIR),
             1280, 720,
             left_target="bedroom",
-            right_target="kitchen"
+            right_target="living_room"
         )
     }
 

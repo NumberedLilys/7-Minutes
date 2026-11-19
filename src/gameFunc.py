@@ -40,6 +40,8 @@ def game():
     current_background = "bedroom"
 
     while True:
+        screen.fill((0, 0, 0)) 
+
         dt = clock.tick(60)
         
         backgrounds[current_background].draw(screen) # draws current background onto screen
@@ -50,13 +52,17 @@ def game():
                 sys.exit()
 
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-                for item in bedroom_items.values():
-                    item.check_click(event.pos)
+                if current_background == "bedroom":
+                    for item in bedroom_items.values():
+                        item.check_click(event.pos)
 
         all_sprites.update(dt)
-
-        for item in bedroom_items:
-            bedroom_items[item].draw(screen)
+        if current_background == "bedroom":
+            for item in bedroom_items.values():
+                item.draw(screen)
+                
+        elif current_background == "kitchen":
+            pass
 
         # ============================ determining current room, adjusting ==============================
 

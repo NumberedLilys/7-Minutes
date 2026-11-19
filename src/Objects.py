@@ -17,7 +17,7 @@ class Object:
     def check_click(self, mouse_pos):
         if self.hitbox.collidepoint(mouse_pos):
             # startInteraction(self.name)
-            print("CLICKED")
+            print(f"{self.name} WAS CLICKED")
 
     def draw(self, screen):
         screen.blit(self.image, self.rect)
