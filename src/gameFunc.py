@@ -85,7 +85,7 @@ def game():
         backgrounds[current_background].draw(canvas)
         camera_x = backgrounds[current_background].camera_x
 
-        #drawing room objects
+        # #drawing room objects
         if current_background == "bedroom":
             camera_x = backgrounds[current_background].camera_x
             for item in bedroom_items.values():
@@ -133,7 +133,7 @@ def game():
         screen.blit(scaled_canvas, (0, 0))  # draws scaled canvas onto screen
 
         # all_sprites.draw(screen)  # "draws" sprites in group onto screen
-        dialogue.draw(screen)
+        dialogue.draw(canvas)
         pygame.display.flip()
 
 
