@@ -25,8 +25,8 @@ from DialogueManager import DialogueManager
 from characterNames import Nameplates
 
 box_image = Nameplates["BlankText"]
-dialogue_font = pygame.font.Font(ROOT_DIR / "assets" / "fonts" / "fusion-pixel-10px-monospaced-kr-latin-400-normal.ttf", 24)
-dialogue = DialogueManager(dialogue_font, box_image, Nameplates)
+dialogue_font = pygame.font.Font(ROOT_DIR / "assets" / "fonts" / "fusion-pixel-10px-monospaced-kr-latin-400-normal.ttf", 10)
+dialogue = DialogueManager(dialogue_font, box_image, Nameplates, SCALE)
 
 # ============================ setting up display initializations ==============================
 

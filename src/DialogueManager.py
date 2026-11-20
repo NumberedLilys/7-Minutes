@@ -1,10 +1,31 @@
 import pygame
 
+#Implimenting text_wrap 
+def text_wrap(text, font, max_width):
+    words = text.split()
+    lines = []
+    current_line = ""
+
+    for word in words:
+        test_line = f"{current_line} {word}".strip()
+        if font.size(test_line)[0] <= max_width:
+            current_line = test_line
+        else:
+            if current_line:
+                lines.append(current_line)
+            current_line = word
+
+    if current_line:
+        lines.append(current_line)
+
+    return lines
+
 class DialogueManager:
-    def __init__(self, font, box_image, nameplates):
+    def __init__(self, font, box_image, nameplates, scale):
         self.font = font
         self.box_image = box_image
         self.nameplates = nameplates
+        self.scale = scale
 
         self.active = False # True if dialogue box open, false if not
         self.tree = None # holds dictionary of modes (depending on conversation/text)
@@ -40,12 +61,16 @@ class DialogueManager:
 
         if event.type == pygame.MOUSEMOTION: # finding where mouse is hovering
             for i in range(len(self.option_rects)):
-                if self.option_rects[i].collidepoint(event.pos):
+                if self.option_rects[i].collidepoint(
+                    (event.pos[0] / self.scale, event.pos[1] / self.scale)
+                ):
                     self.selected_index = i
 
         elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1: # if click using mouse
             for i in range(len(self.option_rects)):
-                if self.option_rects[i].collidepoint(event.pos):
+                if self.option_rects[i].collidepoint(
+                    (event.pos[0] / self.scale, event.pos[1] / self.scale)
+                ):
                     self._select_option(i)
                     return
 
@@ -67,27 +92,44 @@ class DialogueManager:
             return
 
         node = self.tree[self.current_node_id] # set current node from dictionary
-        screen_w, screen_h = surface.get_size() # automatically adjust text box based on screen size
-
-        box_rect = self.box_image.get_rect(midbottom=(screen_w // 2, screen_h - 30)) # draw text box near bottom of screen
+        screen_w, screen_h = surface.get_size()
+        box_w, box_h =280, 50
+        box_rect = pygame.Rect(
+            (surface.get_width() - box_w) // 2,
+            surface.get_height() - box_h -115,
+            box_w,
+            box_h,
+        )
         surface.blit(self.box_image, box_rect)
 
         speaker_key = node.get("speaker") # get matching name
         if speaker_key in self.nameplates:
             plate_img = self.nameplates[speaker_key]
-            name_rect = plate_img.get_rect(topleft=(box_rect.left + 30, box_rect.top - 25)) # estimated numbers
+            name_rect = plate_img.get_rect(
+                topleft=(box_rect.left + 8, 
+                         box_rect.top - plate_img.get_height() + 4)
+                         ) # estimated numbers
+            
             surface.blit(plate_img, name_rect) # draw nameplate over top left of text box
+        padding = 8
+        text_x = box_rect.left + padding
+        text_y = box_rect.top + 12
+        line_height = self.font.get_linesize()
+        text_lines = text_wrap(node["text"], self.font, box_w - padding * 2)
 
-        text_x = box_rect.left + 45
-        text_y = box_rect.top + 45
-        text_surf = self.font.render(node["text"], True, (255, 255, 255)) # draw dialogue in textbox
-        surface.blit(text_surf, (text_x, text_y))
+        #text_lines is a list of wrapped strings from above functino
+        #enumerate goes through that list and provides each line's index and text
+        #text_surface is the drawable piece of text surface.blit can display 
+        
+        for line_number, line in enumerate(text_lines):
+            text_surface = self.font.render(line, True, (255, 255, 255))
+            surface.blit(text_surface, (text_x, text_y + line_number * line_height))
 
         # ============ TEXT OPTIONS =============
         self.option_rects = []
         options = node.get("options", []) or [] # get all options for current node/text in dictionary
-        options_start_y = text_y + 45 # starting y value to list options
-        line_spacing = 32
+        options_start_y = text_y + len(text_lines) * line_height + 2
+        line_spacing = line_height + 1
 
         for i in range(len(options)): # go through each option
             option = options[i] # current option 
