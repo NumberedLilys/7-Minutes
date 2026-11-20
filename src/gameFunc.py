@@ -71,8 +71,8 @@ def game():
                     logic_mouse_pos = (mouse_x, mouse_y)
 
                     for item in bedroom_items.values():
-                        item.check_click(logic_mouse_pos)
-                        triggered_dialogue = item.check_click(event.pos)
+                        triggered_dialogue = item.check_click(logic_mouse_pos)
+
                         if triggered_dialogue:
                             dialogue.start(triggered_dialogue)
                             break
@@ -116,24 +116,20 @@ def game():
         # ============================ adding character sprite ==============================
         #update camera position based on character's position, then draw the background and character sprite
         camera_x = backgrounds[current_background].camera_x
-        print(
-    "Player X:", my_character.rect.x,
-    "| Background width:", backgrounds[current_background].world_width,
-    "| Viewport width:", backgrounds[current_background].screen_width,
-    "| Camera X:", backgrounds[current_background].camera_x
-)
+
         for sprite in all_sprites:
             canvas.blit(sprite.image,
                         (sprite.rect.x - camera_x, sprite.rect.y)
                     )
-            
+        
+        # all_sprites.draw(screen)  # "draws" sprites in group onto screen
+        dialogue.draw(canvas)   
         scaled_canvas = pygame.transform.scale(
             canvas,(SCREEN_WIDTH, SCREEN_HEIGHT)
         )
         screen.blit(scaled_canvas, (0, 0))  # draws scaled canvas onto screen
 
         # all_sprites.draw(screen)  # "draws" sprites in group onto screen
-        dialogue.draw(canvas)
         pygame.display.flip()
 
 
