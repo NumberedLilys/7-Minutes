@@ -1,38 +1,40 @@
 import pygame
 import sys
 from Player import Player
-from Load import load_animations
+from Load import load_animations, ROOT_DIR
 from Backgrounds import create_backgrounds, create_buttons
 from Items import create_bedroom_items
 
 # ====================== basic setup ==================
 
-all_sprites = pygame.sprite.Group()
-
 pygame.init()
 
+all_sprites = pygame.sprite.Group()
+
 SCREEN_WIDTH, SCREEN_HEIGHT = 1280, 720 # 1280, 720 --> Default
-
 BUTTON_WIDTH, BUTTON_HEIGHT = 355, 90
-
 MAYNNE_X, MAYNNE_Y = 575, 475 # character location on X, Y
 
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT)) # 1280, 720 default
 clock = pygame.time.Clock()
 
+from DialogueManager import DialogueManager
+from characterNames import Nameplates
+
+box_image = Nameplates["BlankText"]
+dialogue_font = pygame.font.Font(ROOT_DIR / "assets" / "fonts" / "fusion-pixel-10px-monospaced-kr-latin-400-normal.ttf", 24)
+dialogue = DialogueManager(dialogue_font, box_image, Nameplates)
+
 # ============================ setting up display initializations ==============================
 
 pygame.display.set_caption('7-Minutes')
-
 animations = load_animations((225, 256)) # 128, 128 (character size)
-
 backgrounds = create_backgrounds(SCREEN_WIDTH, SCREEN_HEIGHT)
 # current_background = "opening_screen"
 
 bedroom_items = create_bedroom_items()
 
 my_character = Player(animations, MAYNNE_X, MAYNNE_Y, SCREEN_WIDTH)
-
 all_sprites = pygame.sprite.Group()
 all_sprites.add(my_character)
 
@@ -41,7 +43,6 @@ def game():
 
     while True:
         screen.fill((0, 0, 0)) 
-
         dt = clock.tick(60)
         
         backgrounds[current_background].draw(screen) # draws current background onto screen
@@ -51,10 +52,16 @@ def game():
                 pygame.quit()
                 sys.exit()
 
-            if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+            if dialogue.active:
+                dialogue.handle_event(event) # if text box open, no click items
+
+            elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1: # if text box not open, click items
                 if current_background == "bedroom":
                     for item in bedroom_items.values():
-                        item.check_click(event.pos)
+                        triggered_dialogue = item.check_click(event.pos)
+                        if triggered_dialogue:
+                            dialogue.start(triggered_dialogue)
+                            break
 
         all_sprites.update(dt)
         if current_background == "bedroom":
@@ -84,6 +91,7 @@ def game():
         # ============================ adding character sprite ==============================
 
         all_sprites.draw(screen)  # "draws" sprites in group onto screen
+        dialogue.draw(screen)
         pygame.display.flip()
 
 def start_screen():

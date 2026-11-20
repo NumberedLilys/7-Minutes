@@ -12,6 +12,9 @@ BEDROOM_OBJECT_DIR = BEDROOM_DIR / "Objects"
 START_DIR = BACKGROUND_DIR / "StartScreen"
 BUTTON_DIR = START_DIR / "Buttons"
 
+DIALOGUE_DIR = ROOT_DIR / "assets" / "ui" / "dialogue"
+NAMEPLATE_DIR = DIALOGUE_DIR / "NamePlates"
+
 def load_image(name, size, path):
     path = path.joinpath(name)
     try:
