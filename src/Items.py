@@ -7,7 +7,7 @@ def create_bedroom_items():
     items = {
         "bed": Object(
             "Bed",
-            load_image("Bed.png", (400, 500), BEDROOM_DIR),
+            load_image("Bed.png", None, BEDROOM_DIR),
             300, 400,
             400, 500,  # Must match the dimensions in the load_image
             dialogue = BEDROOM_DIALOGUES["bed"]
@@ -15,7 +15,7 @@ def create_bedroom_items():
 
         "flowers": Object(
             "Flowers",
-            load_image("Lilies.png", (80, 120), BEDROOM_OBJECT_DIR),
+            load_image("Lilies.png", None, BEDROOM_OBJECT_DIR),
             700, 350,
             80, 120,
             dialogue = BEDROOM_DIALOGUES["flowers"]
@@ -23,7 +23,7 @@ def create_bedroom_items():
 
         "wall_decor": Object(
             "Decor",
-            load_image("WallDecor.png", (100, 200), BEDROOM_OBJECT_DIR),
+            load_image("WallDecor.png", None, BEDROOM_OBJECT_DIR),
             1100, 300,
             100, 200,
             dialogue = BEDROOM_DIALOGUES["wall decor"]

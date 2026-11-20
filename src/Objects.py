@@ -1,12 +1,20 @@
 import pygame
+#from dialogueTest import startInteraction
 
 class Object:
     def __init__(self, name, image, item_x, item_y,
-                 item_width, item_height, dialogue = None):
+                 item_width=None, item_height=None, dialogue = None):
 
         self.name = name
         self.image = image
         self.dialogue = dialogue
+
+        #unless specified use the actual dimensions
+        if item_width is None:
+            item_width = image.get_width()
+
+        if item_height is None:
+            item_height = image.get_height()
 
         self.rect = pygame.Rect(
             item_x, item_y, item_width, item_height
@@ -20,10 +28,8 @@ class Object:
             return self.dialogue
         return None
 
-    def draw(self, screen):
-        screen.blit(self.image, self.rect)
-
-
-# IN WHILE LOOP OF GAME:
-#   FOR ITEM IN BEDROOM_ITEMS:
-        # items[ITEM].draw(screen)
+    def draw(self, screen, camera_x=0):
+        screen.blit(
+            self.image,
+            (self.rect.x - camera_x, self.rect.y)
+        )
