@@ -3,7 +3,7 @@ import sys
 from Player import Player
 from Load import load_animations, ROOT_DIR
 from Backgrounds import create_backgrounds, create_buttons
-from Items import create_bedroom_items
+from Items import create_bedroom_items, create_kitchen_items
 
 # ====================== basic setup ==================
 
@@ -38,6 +38,7 @@ backgrounds = create_backgrounds(GAME_WIDTH, GAME_HEIGHT)
 # current_background = "opening_screen"
 
 bedroom_items = create_bedroom_items()
+kitchen_items = create_kitchen_items()
 
 my_character = Player(animations, MAYNNE_X, MAYNNE_Y, backgrounds["bedroom"].world_width) #changed for game resolution
 
@@ -92,7 +93,8 @@ def game():
                 item.draw(canvas, camera_x)
                 
         elif current_background == "kitchen":
-            pass
+            for item in kitchen_items.values():
+                item.draw(canvas, camera_x)
 
         # ============================ determining current room, adjusting ==============================
 
@@ -100,11 +102,12 @@ def game():
             my_character.rect
         )
 
-    # Move character to the opposite side of the new room (starting from left, outside of hitbox area, 50 pixels)
+        # Move character to the opposite side of the new room (starting from left, outside of hitbox area, 50 pixels)
 
         if next_background is not None and next_background in backgrounds: 
 
             current_background = next_background # changing current room to the newly entered one
+            my_character.world_width = backgrounds[current_background].world_width
 
             if my_character.rect.left <= 50:
                 my_character.rect.left = (

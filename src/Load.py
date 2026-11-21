@@ -9,6 +9,7 @@ IDLE_DIR = MAYNNE_DIR / "Idle"
 BACKGROUND_DIR = ROOT_DIR / "assets" / "environments"
 BEDROOM_DIR = BACKGROUND_DIR / "Bedroom"
 BEDROOM_OBJECT_DIR = BEDROOM_DIR / "Objects"
+KITCHEN_DIR = BACKGROUND_DIR / "Kitchen"
 START_DIR = BACKGROUND_DIR / "StartScreen"
 BUTTON_DIR = START_DIR / "Buttons"
 
