@@ -27,6 +27,10 @@ class DialogueManager:
         self.nameplates = nameplates
         self.scale = scale
 
+        self.dialogue_queue = []
+
+        self.actions = {}
+
         self.active = False # True if dialogue box open, false if not
         self.tree = None # holds dictionary of modes (depending on conversation/text)
         self.current_node_id = None # tracks which dictionary key in self.tree is active on screen ("start", etc)
@@ -42,13 +46,22 @@ class DialogueManager:
 
     def _select_option(self, index): # option selection, sets next node
         options = self.tree[self.current_node_id].get("options", []) # get list of options from dictionary
+
         if not options: # base case, if no options exit out of text box
-            self.active = False
+            self._start_next()
             return
 
-        next_node = options[index]["next"] # find current option and find its next
+        selected_option = options[index]
+
+        action = selected_option.get("action")
+
+        if action:
+            action()
+
+        next_node = selected_option["next"] # find current option and find its next
+
         if next_node is None:
-            self.active = False # close text box if no next (None)
+            self._start_next() # close text box if no next (None)
         else:
             self.current_node_id = next_node # set curerent node to next one
             self.selected_index = 0 # reset choice index
@@ -86,6 +99,22 @@ class DialogueManager:
 
             elif event.key in (pygame.K_RETURN, pygame.K_SPACE): # if enter or space bar, select option
                 self._select_option(self.selected_index)
+
+ # ================ Dialogue queue to avoid overwriting ================
+    def queue(self, tree, start_node="start"):
+        self.dialogue_queue.append((tree, start_node)) # appending the next dialogue to queue 
+
+        if not self.active:
+            self._start_next()
+
+    def _start_next(self):
+        if self.dialogue_queue:
+            tree, start_node = self.dialogue_queue.pop(0)
+            self.start(tree, start_node)
+        else:
+            self.active = False
+
+    # ============= drawing to screen =============
 
     def draw(self, surface):
         if not self.active: # base case, close text box if no text

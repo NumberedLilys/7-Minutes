@@ -11,13 +11,13 @@ BEDROOM_DIALOGUES = {
             "speaker": "Blank",
             "text": "Fresh lilies. There's a faint scent.",
             "options": [
-                        {"text": "Throw them out", "next": "throw out"}, # Index 0
+                        {"text": "Throw them out", "next": "throw out"},    # Index 0
                         {"text": "Leave them alone", "next": "leave"}       # Index 1
                         ]
         },
         "throw out": {
             "speaker": "Maynne",
-            "text": "Lilies were never my favourite flower anyways",
+            "text": "Lilies were never my favourite flower anyways.",
             "options": [{"text": "Back", "next": None}]
         },
         "leave": {
@@ -34,3 +34,26 @@ BEDROOM_DIALOGUES = {
             }
         }
     }
+
+FIRST_EVENT_DIALOGUE = {
+    "mother breakfast": {
+            "start": {
+                "speaker": "Mom",
+                "text": "Maynne! Breakfast is ready!",
+                "options": [
+                            {"text": "Coming, Mom!", "next": "respond breakfast"},    # Index 0
+                            {"text": "Ignore her", "next": "ignore breakfast"}       # Index 1
+                            ]
+            },
+            "respond breakfast": {
+                "speaker": "Maynne",
+                "text": "Coming, Mom!",
+                "options": [{"text": "Back", "next": None}]
+            },
+            "ignore breakfast": {
+                "speaker": "Maynne",
+                "text": "...",
+                "options": [{"text": "Back", "next": None}]
+            }
+    }
+}

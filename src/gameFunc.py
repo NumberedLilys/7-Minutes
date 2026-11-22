@@ -4,6 +4,9 @@ from Player import Player
 from Load import load_animations, ROOT_DIR
 from Backgrounds import create_backgrounds, create_buttons
 from Items import create_bedroom_items, create_kitchen_items
+from Timer import GameTimer
+from Dialogue import BEDROOM_DIALOGUES
+from timedEvents import setup_timed_events
 
 # ====================== basic setup ==================
 
@@ -40,6 +43,8 @@ backgrounds = create_backgrounds(GAME_WIDTH, GAME_HEIGHT)
 bedroom_items = create_bedroom_items()
 kitchen_items = create_kitchen_items()
 
+BEDROOM_DIALOGUES["flowers"]["start"]["options"][0]["action"] = bedroom_items["flowers"].remove
+
 my_character = Player(animations, MAYNNE_X, MAYNNE_Y, backgrounds["bedroom"].world_width) #changed for game resolution
 
 all_sprites = pygame.sprite.Group()
@@ -49,8 +54,13 @@ def game():
     current_background = "bedroom"
     my_character.world_width = backgrounds[current_background].world_width
 
+    timer = GameTimer(7)
+    setup_timed_events(timer, dialogue)
+
     while True:
         dt = clock.tick(60)
+        timer.update(dt)
+
         screen.fill((0, 0, 0))
 
         for event in pygame.event.get():
@@ -126,10 +136,28 @@ def game():
                     )
         
         # all_sprites.draw(screen)  # "draws" sprites in group onto screen
+        
+        # ============== timer ================
+        timer_text = timer.get_countdown()
+
+        timer_surface = dialogue_font.render(
+            timer_text,
+            True,
+            (255, 255, 255)
+        )
+
+        timer_rect = timer_surface.get_rect(
+            topright=(GAME_WIDTH - 8, 8)
+        )
+
+        canvas.blit(timer_surface, timer_rect)
+
+        # ========== canvas ==========
         dialogue.draw(canvas)   
         scaled_canvas = pygame.transform.scale(
             canvas,(SCREEN_WIDTH, SCREEN_HEIGHT)
         )
+
         screen.blit(scaled_canvas, (0, 0))  # draws scaled canvas onto screen
 
         # all_sprites.draw(screen)  # "draws" sprites in group onto screen
