@@ -35,7 +35,7 @@ BEDROOM_DIALOGUES = {
         }
     }
 
-FIRST_EVENT_DIALOGUE = {
+TIMED_DIALOGUE = {
     "mother breakfast": {
             "start": {
                 "speaker": "Mom",

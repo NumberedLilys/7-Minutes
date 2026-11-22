@@ -1,8 +1,9 @@
-from Dialogue import FIRST_EVENT_DIALOGUE
-def setup_timed_events(timer, dialogue):
+from Dialogue import TIMED_DIALOGUE
+def setup_timed_events(timer, dialogue, get_current_room):
 
     def first_event():
-        dialogue.queue(FIRST_EVENT_DIALOGUE["mother breakfast"])
+        if get_current_room() == "bedroom":
+            dialogue.queue(TIMED_DIALOGUE["mother breakfast"])
 
     # def second_event():
     #     dialogue.queue(SECOND_EVENT_DIALOGUE)

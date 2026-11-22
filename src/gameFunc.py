@@ -55,7 +55,11 @@ def game():
     my_character.world_width = backgrounds[current_background].world_width
 
     timer = GameTimer(7)
-    setup_timed_events(timer, dialogue)
+    
+    def get_current_room():
+        return current_background
+
+    setup_timed_events(timer, dialogue, get_current_room)
 
     while True:
         dt = clock.tick(60)
