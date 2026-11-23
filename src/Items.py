@@ -1,5 +1,5 @@
 from Objects import Object
-from Load import load_image, BEDROOM_OBJECT_DIR, BEDROOM_DIR,KITCHEN_DIR
+from Load import load_image, BEDROOM_OBJECT_DIR, BEDROOM_DIR,KITCHEN_DIR, NEIGHBOURHOOD_DIR, CAMPUS_DIR
 from Dialogue import BEDROOM_DIALOGUES
 
 def create_bedroom_items():
@@ -84,6 +84,51 @@ def create_kitchen_items():
             "Coat Rack",
             load_image("CoatRack.png", None, KITCHEN_DIR),
             768, 64
+        )
+
+    }
+
+    return items
+
+def create_neighbourhood_items():
+
+    items = {
+        "stop_sign": Object(
+            "Stop Sign",
+            load_image("BusStop.png", None, NEIGHBOURHOOD_DIR),
+            252, 40,
+        ),
+
+    }
+
+    return items
+
+def create_campus_items():
+    items ={
+        "school_plaque": Object(
+            "School Plaque",
+            load_image("SchoolPlaque.png", None, CAMPUS_DIR),
+            113,136
+        ),
+        "bench": Object(
+            "Bench",
+            load_image("Bench.png", None, CAMPUS_DIR),
+            748, 141
+        ),
+        "classroom_door": Object(
+            "Classroom Door",
+            load_image("ClassroomDoor.png", None, CAMPUS_DIR),
+            464,73
+        ),
+        "Studyroom_Door": Object(
+            "Studyroom Door",
+            load_image("StudyDoor.png", None, CAMPUS_DIR),
+            625,73
+        ),
+        "FireExit_Door": Object(
+            "FireExit Door",
+            load_image("FireExitDoor.png", None, CAMPUS_DIR),
+            874,74
         )
 
     }

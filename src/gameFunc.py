@@ -3,7 +3,7 @@ import sys
 from Player import Player
 from Load import load_animations, ROOT_DIR
 from Backgrounds import create_backgrounds, create_buttons
-from Items import create_bedroom_items, create_kitchen_items
+from Items import create_bedroom_items, create_kitchen_items, create_neighbourhood_items, create_campus_items
 from Timer import GameTimer
 from Dialogue import BEDROOM_DIALOGUES
 from timedEvents import setup_timed_events
@@ -43,6 +43,8 @@ backgrounds = create_backgrounds(GAME_WIDTH, GAME_HEIGHT)
 
 bedroom_items = create_bedroom_items()
 kitchen_items = create_kitchen_items()
+neighbourhood_items = create_neighbourhood_items()
+campus_items = create_campus_items()
 
 BEDROOM_DIALOGUES["flowers"]["start"]["options"][0]["action"] = bedroom_items["flowers"].remove
 
@@ -65,6 +67,7 @@ def game():
     while True:
         dt = clock.tick(60)
         timer.update(dt)
+        clicked_background = None
 
         audio.play_ambience(current_background)
 
@@ -94,6 +97,14 @@ def game():
                         if triggered_dialogue:
                             dialogue.start(triggered_dialogue)
                             break
+                elif current_background == "neighbourhood":
+                    camera_x = backgrounds[current_background].camera_x
+                    mouse_x = event.pos[0] / SCALE + camera_x
+                    mouse_y = event.pos[1] / SCALE
+                    stop_sign = neighbourhood_items["stop_sign"]
+
+                    if stop_sign.hitbox.collidepoint((mouse_x, mouse_y)):
+                        clicked_background = "campus"
 
         all_sprites.update(dt)
 
@@ -113,11 +124,19 @@ def game():
             for item in kitchen_items.values():
                 item.draw(canvas, camera_x)
 
+        elif current_background == "neighbourhood":
+            for item in neighbourhood_items.values():
+                item.draw(canvas, camera_x)
+
+        elif current_background == "campus":
+            for item in campus_items.values():
+                item.draw(canvas, camera_x)
+
         # ============================ determining current room, adjusting ==============================
 
-        next_background = backgrounds[current_background].check_transition(
-            my_character.rect
-        )
+        next_background = clicked_background or backgrounds[
+            current_background
+        ].check_transition(my_character.rect)
 
         # Move character to the opposite side of the new room (starting from left, outside of hitbox area, 50 pixels)
 
