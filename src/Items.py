@@ -1,9 +1,10 @@
 from Objects import Object
-from Load import load_image, BEDROOM_OBJECT_DIR, BEDROOM_DIR,KITCHEN_DIR
+from Load import load_image, load_animations, BEDROOM_OBJECT_DIR, BEDROOM_DIR,KITCHEN_DIR
 from Dialogue import BEDROOM_DIALOGUES, KITCHEN_DIALOGUE
+from Characters import Character
+import pygame
 
-def create_bedroom_items():
-
+def create_bedroom_items(animations):
     items = {
         "bed": Object(
             "Bed",
@@ -39,8 +40,19 @@ def create_bedroom_items():
             "Calendar",
             load_image("Calendar.png", None, BEDROOM_OBJECT_DIR),
             456,41
+        ),
+        "lyra": Character(
+            "lyra",
+            animations["lyra_idle"],
+            280, 110
+            # dialogue = BEDROOM_DIALOGUES["lyra"]
+        ),
+        "Lyra": Object(
+            "lyra",
+            pygame.Surface((280, 110), pygame.SRCALPHA),
+            280, 110,
+            dialogue = BEDROOM_DIALOGUES["lyra"]
         )
-
     }
 
     return items

@@ -42,7 +42,7 @@ animations = load_animations((64, 64)) #changed to accurate dimensions
 backgrounds = create_backgrounds(GAME_WIDTH, GAME_HEIGHT)
 # current_background = "opening_screen"
 
-bedroom_items = create_bedroom_items()
+bedroom_items = create_bedroom_items(animations)
 kitchen_items = create_kitchen_items()
 
 BEDROOM_DIALOGUES["flowers"]["start"]["options"][0]["action"] = bedroom_items["flowers"].remove
@@ -154,6 +154,7 @@ def game():
 
         # #drawing room objects
         if current_background == "bedroom":
+            bedroom_items["lyra"].update(dt)
             camera_x = backgrounds[current_background].camera_x
             for item in bedroom_items.values():
                 item.draw(canvas, camera_x)

@@ -1,4 +1,19 @@
 BEDROOM_DIALOGUES = {
+    "lyra": {
+        "start": {
+            "speaker": "Lyra",
+            "text": "Meow!",
+            "options": [{"text": "Pet", "next": "pet"},
+                        {"text": "Leave", "next": None}]
+        },
+        "pet": {
+            "start": {
+                "speaker": "Blank",
+                "text": "You pet Lyra, just like every other morning",
+                "options": [{"text": "Back", "next": None}]
+            },
+        }
+    },
     "bed": {
         "start": {
             "speaker": "Blank",
