@@ -1,6 +1,6 @@
 from Background import Background
-from Load import load_image, BACKGROUND_DIR, START_DIR, BUTTON_DIR, BEDROOM_DIR,KITCHEN_DIR
-
+from Load import load_image, BACKGROUND_DIR, START_DIR, BUTTON_DIR, BEDROOM_DIR
+from Load import KITCHEN_DIR, NEIGHBOURHOOD_DIR, CAMPUS_DIR
 
 def create_backgrounds(screen_width, screen_height):
 
@@ -25,7 +25,19 @@ def create_backgrounds(screen_width, screen_height):
             screen_width,
             screen_height,
             left_target="bedroom",
-            right_target="bus_stop"
+            right_target="neighbourhood"
+        ),
+        "neighbourhood": Background(
+            load_image("Neighbourhood.png", None, NEIGHBOURHOOD_DIR),
+            screen_width,
+            screen_height,
+            left_target="kitchen"
+        ),
+        "campus": Background(
+            load_image("Background.png", None, CAMPUS_DIR),
+            screen_width,
+            screen_height,
+            left_target="neighbourhood"
         )
     }
 
