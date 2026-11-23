@@ -7,6 +7,7 @@ from Items import create_bedroom_items, create_kitchen_items
 from Timer import GameTimer
 from Dialogue import BEDROOM_DIALOGUES
 from timedEvents import setup_timed_events
+from Audio import audio
 
 # ====================== basic setup ==================
 
@@ -64,6 +65,8 @@ def game():
     while True:
         dt = clock.tick(60)
         timer.update(dt)
+
+        audio.play_ambience(current_background)
 
         screen.fill((0, 0, 0))
 
@@ -172,6 +175,8 @@ def start_screen():
     current_background = "opening_screen"
     start_buttons = create_buttons(BUTTON_WIDTH, BUTTON_HEIGHT)
 
+    audio.play_music("start")
+
     while True:
         # Draw the opening background
         backgrounds[current_background].draw(screen)
@@ -204,6 +209,7 @@ def start_screen():
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
 
                 if play_button.collidepoint(event.pos):
+                    audio.play_sound("click")
                     game()
                     return
 
