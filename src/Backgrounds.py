@@ -46,12 +46,18 @@ def create_backgrounds(screen_width, screen_height):
 def create_buttons(button_width, button_height):
     size = (button_width, button_height)
 
-    start_buttons = {
-        "regular": load_image("StartRegular.png", size, BUTTON_DIR),
+    buttons = {
+        "start_regular": load_image("StartRegular.png", size, BUTTON_DIR),
 
         "start_hover": load_image("StartHover.png", size, BUTTON_DIR),
 
-        "start_click": load_image("StartClick.png", size, BUTTON_DIR)
+        "start_click": load_image("StartClick.png", size, BUTTON_DIR),
+
+        "exit_regular": load_image("ExitRegular.png", size, BUTTON_DIR),
+        
+        "exit_hover": load_image("ExitHover.png", size, BUTTON_DIR),
+
+        "exit_click": load_image("ExitClick.png", size, BUTTON_DIR),
     }
 
-    return start_buttons
+    return buttons

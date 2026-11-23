@@ -10,6 +10,9 @@ class Player(pygame.sprite.Sprite):
         self.facing = "right"
         self.moving = False
 
+        self.dialogue_idle_right = self.animations["idle_right"][0]
+        self.dialogue_idle_left = self.animations["idle_left"][0]
+
         self.frame_index = 0
         self.frame_timer = 0
         self.frame_duration = 125   # ms per frame
@@ -19,7 +22,18 @@ class Player(pygame.sprite.Sprite):
         self.speed = 2
 
 # ===============Updates based on player movement left/right===============
-    def update(self, dt):
+    def update(self, dt, dialogue_active=False):
+        if dialogue_active:
+            if self.facing == "right":
+                self.image = self.dialogue_idle_right
+            else:
+                self.image = self.dialogue_idle_left
+
+            self.moving = False
+            self.frame_index = 0
+            self.frame_timer = 0
+            return
+        
         keys = pygame.key.get_pressed()
         self.moving = False
 

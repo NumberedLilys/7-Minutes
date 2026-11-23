@@ -1,6 +1,6 @@
 from Objects import Object
 from Load import load_image, BEDROOM_OBJECT_DIR, BEDROOM_DIR,KITCHEN_DIR, NEIGHBOURHOOD_DIR, CAMPUS_DIR
-from Dialogue import BEDROOM_DIALOGUES
+from Dialogue import BEDROOM_DIALOGUES, KITCHEN_DIALOGUE, NEIGHBOURHOOD_DIALOGUE
 
 def create_bedroom_items():
 
@@ -68,7 +68,8 @@ def create_kitchen_items():
         "breakfast": Object(
             "Breakfast",
             load_image("Breakfast.png", None, KITCHEN_DIR),
-            514,105
+            514,105,
+            dialogue = KITCHEN_DIALOGUE["breakfast"]
         ),
         "bench": Object(
             "Bench",
@@ -78,7 +79,8 @@ def create_kitchen_items():
         "calendar": Object(
             "Calendar",
             load_image("Calendar.png", None, KITCHEN_DIR),
-            869, 61
+            869, 61,
+            dialogue = KITCHEN_DIALOGUE["calendar"]
         ),
         "coat_rack": Object(
             "Coat Rack",
@@ -97,6 +99,7 @@ def create_neighbourhood_items():
             "Stop Sign",
             load_image("BusStop.png", None, NEIGHBOURHOOD_DIR),
             252, 40,
+            dialogue=NEIGHBOURHOOD_DIALOGUE["bus stop"]
         ),
 
     }

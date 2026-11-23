@@ -1,13 +1,14 @@
 import pygame
 import sys
 from Player import Player
-from Load import load_animations, ROOT_DIR
+from Load import load_animations, ROOT_DIR, load_image
 from Backgrounds import create_backgrounds, create_buttons
 from Items import create_bedroom_items, create_kitchen_items, create_neighbourhood_items, create_campus_items
 from Timer import GameTimer
-from Dialogue import BEDROOM_DIALOGUES
+from Dialogue import BEDROOM_DIALOGUES, TIMED_DIALOGUE, NEIGHBOURHOOD_DIALOGUE
 from timedEvents import setup_timed_events
 from Audio import audio
+from Fade import Fade
 
 # ====================== basic setup ==================
 
@@ -52,22 +53,51 @@ my_character = Player(animations, MAYNNE_X, MAYNNE_Y, backgrounds["bedroom"].wor
 
 all_sprites = pygame.sprite.Group()
 all_sprites.add(my_character)
+END_DIR = ROOT_DIR / "assets" / "characters"
+dialogue_images = {
+    "death_ending": load_image(
+        "grim_reaper_temp.png",
+        (80, 80),
+        END_DIR
+    )
+}
 
 def game():
     current_background = "bedroom"
     my_character.world_width = backgrounds[current_background].world_width
 
     timer = GameTimer(7)
-    
+    # ====== adding fade for end of game ========
+    fade = Fade(320, 180, duration=2000)
+    ending_state = {
+        "image_active": False,
+        "text_active": False,
+        "waiting_for_input": False
+    }
+
+    def start_ending_text():
+        fade.start()
+
+    TIMED_DIALOGUE["death_ending"]["maynne_response_6"]["options"][0]["action"] = start_ending_text
+
+    # ====== loop ======
     def get_current_room():
         return current_background
 
-    setup_timed_events(timer, dialogue, get_current_room)
+    setup_timed_events(timer, dialogue, get_current_room, ending_state)
 
     while True:
         dt = clock.tick(60)
         timer.update(dt)
         clicked_background = None
+        def clicked():
+            nonlocal clicked_background
+            clicked_background = "campus"
+
+        fade.update(dt)
+        if fade.finished and not ending_state["text_active"]:
+            ending_state["text_active"] = True
+            ending_state["waiting_for_input"] = True
 
         audio.play_ambience(current_background)
 
@@ -78,10 +108,23 @@ def game():
                 pygame.quit()
                 sys.exit()
 
+            if ending_state["waiting_for_input"]:
+                if event.type == pygame.KEYDOWN:
+                    if event.key in (pygame.K_SPACE, pygame.K_RETURN):
+                        pygame.quit()
+                        sys.exit()
+
+                continue
+
             if dialogue.active:
                 dialogue.handle_event(event) # if text box open, no click items
 
             elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1: # if text box not open, click items
+                #converting window mouse position to logical game coords
+                mouse_x = event.pos[0]/ SCALE + camera_x
+                mouse_y = event.pos[1]/ SCALE
+
+                logic_mouse_pos = (mouse_x, mouse_y)
                 if current_background == "bedroom":
                     camera_x = backgrounds[current_background].camera_x
 
@@ -97,16 +140,29 @@ def game():
                         if triggered_dialogue:
                             dialogue.start(triggered_dialogue)
                             break
+
                 elif current_background == "neighbourhood":
                     camera_x = backgrounds[current_background].camera_x
                     mouse_x = event.pos[0] / SCALE + camera_x
                     mouse_y = event.pos[1] / SCALE
                     stop_sign = neighbourhood_items["stop_sign"]
+                    triggered_dialogue = neighbourhood_items["stop_sign"].check_click(logic_mouse_pos)
 
                     if stop_sign.hitbox.collidepoint((mouse_x, mouse_y)):
-                        clicked_background = "campus"
+                        dialogue.start(triggered_dialogue)
+                        NEIGHBOURHOOD_DIALOGUE["bus stop"]["go to school"]["options"][0]["action"] = clicked
 
-        all_sprites.update(dt)
+                elif current_background == "kitchen":
+                    camera_x = backgrounds[current_background].camera_x
+
+                    for item in kitchen_items.values():
+                        triggered_dialogue = item.check_click(logic_mouse_pos)
+
+                        if triggered_dialogue:
+                            dialogue.start(triggered_dialogue)
+                            break
+        
+        all_sprites.update(dt, dialogue.active)
 
         #updating camera After player movement
         backgrounds[current_background].update_camera(my_character.rect)
@@ -179,7 +235,40 @@ def game():
         canvas.blit(timer_surface, timer_rect)
 
         # ========== canvas ==========
+        if ending_state["image_active"]:
+            image = dialogue_images["death_ending"]
+            canvas.blit(image, (200, 80))
+
         dialogue.draw(canvas)   
+        fade.draw(canvas)
+
+        if ending_state["text_active"]:
+            ending_message = "Your Regrets:"
+
+            text_surface = dialogue_font.render(
+                ending_message,
+                True,
+                (255, 255, 255)
+            )
+
+            text_rect = text_surface.get_rect(
+                center=(GAME_WIDTH // 2, GAME_HEIGHT // 2)
+            )
+
+            canvas.blit(text_surface, text_rect)
+
+            prompt_surface = dialogue_font.render(
+                "Press SPACE to exit game",
+                True,
+                (180, 180, 180)
+            )
+
+            prompt_rect = prompt_surface.get_rect(
+                center=(GAME_WIDTH // 2, GAME_HEIGHT - 25)
+            )
+
+            canvas.blit(prompt_surface, prompt_rect)
+
         scaled_canvas = pygame.transform.scale(
             canvas,(SCREEN_WIDTH, SCREEN_HEIGHT)
         )
@@ -190,9 +279,11 @@ def game():
         pygame.display.flip()
 
 
+
+# ================ START SCREEN FUNCTION ==============
 def start_screen():
     current_background = "opening_screen"
-    start_buttons = create_buttons(BUTTON_WIDTH, BUTTON_HEIGHT)
+    buttons = create_buttons(BUTTON_WIDTH, BUTTON_HEIGHT)
 
     audio.play_music("start")
 
@@ -204,19 +295,28 @@ def start_screen():
         mouse_pressed = pygame.mouse.get_pressed()
 
         play_button = pygame.Rect(695, 301, BUTTON_WIDTH, BUTTON_HEIGHT)
-        quit_button = pygame.Rect(756, 420, BUTTON_WIDTH, BUTTON_HEIGHT)
+        quit_button = pygame.Rect(695, 400, BUTTON_WIDTH, BUTTON_HEIGHT)
 
         # Determine which button image to display
         if play_button.collidepoint(mouse):
             if mouse_pressed[0]:  # Left mouse button is pressed
-                button_image = start_buttons["start_click"]
+                play_button_image = buttons["start_click"]
             else:
-                button_image = start_buttons["start_hover"]
+                play_button_image = buttons["start_hover"]
         else:
-            button_image = start_buttons["regular"]
+            play_button_image = buttons["start_regular"]
+
+        if quit_button.collidepoint(mouse):
+            if mouse_pressed[0]:
+                quit_button_image = buttons["exit_click"]
+            else:
+                quit_button_image = buttons["exit_hover"]
+        else:
+            quit_button_image = buttons["exit_regular"]
 
         # Draw the start button
-        screen.blit(button_image, play_button)
+        screen.blit(play_button_image, play_button)
+        screen.blit(quit_button_image, quit_button)
 
         # Handle events
         for event in pygame.event.get():
