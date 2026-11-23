@@ -2,11 +2,11 @@ import pygame
 
 # ==================Player initialization==============================
 class Player(pygame.sprite.Sprite):
-    def __init__(self, animations, x, y, screen_width):
+    def __init__(self, animations, x, y, world_width):
         super().__init__()
 
         self.animations = animations
-        self.screen_width = screen_width
+        self.world_width = world_width
         self.facing = "right"
         self.moving = False
 
@@ -41,7 +41,7 @@ class Player(pygame.sprite.Sprite):
             self.moving = False
 
         self.rect.left = max(self.rect.left, 0)
-        self.rect.right = min(self.rect.right, self.screen_width)
+        self.rect.right = min(self.rect.right, self.world_width)
 
         self.animate(dt)
 
