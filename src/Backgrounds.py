@@ -37,6 +37,7 @@ def create_backgrounds(screen_width, screen_height):
             load_image("Background.png", None, CAMPUS_DIR),
             screen_width,
             screen_height,
+            left_target="neighbourhood"
         )
     }
 

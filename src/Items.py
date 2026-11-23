@@ -128,7 +128,7 @@ def create_campus_items():
         "FireExit_Door": Object(
             "FireExit Door",
             load_image("FireExitDoor.png", None, CAMPUS_DIR),
-            874,73
+            874,74
         )
 
     }
