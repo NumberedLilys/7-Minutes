@@ -7,18 +7,43 @@ WALK_DIR = MAYNNE_DIR / "Walk"
 IDLE_DIR = MAYNNE_DIR / "Idle"
 
 BACKGROUND_DIR = ROOT_DIR / "assets" / "environments"
+BEDROOM_DIR = BACKGROUND_DIR / "Bedroom"
+BEDROOM_OBJECT_DIR = BEDROOM_DIR / "Objects"
+KITCHEN_DIR = BACKGROUND_DIR / "Kitchen"
 START_DIR = BACKGROUND_DIR / "StartScreen"
 BUTTON_DIR = START_DIR / "Buttons"
 
-def load_image(name, size, path):
-    path = path.joinpath(name)
+DIALOGUE_DIR = ROOT_DIR / "assets" / "ui" / "dialogue"
+NAMEPLATE_DIR = DIALOGUE_DIR / "NamePlates"
+
+def load_image(name, size=None, path=None):
+    if path is None:
+        raise ValueError("An asset directory must be provided.")
+
+    image_path = path / name
+
     try:
-        img = pygame.image.load(str(path)).convert_alpha()
+        img = pygame.image.load(str(image_path)).convert_alpha()
     except FileNotFoundError:
-        print(f"Error: Could not find image at {path}. Using placeholder.")
-        img = pygame.Surface(size)
-        img.fill((0, 255, 0))
-    return pygame.transform.scale(img, size)
+        raise FileNotFoundError(f"Could not find image: {image_path}")
+
+    # Only resize if a valid size was provided
+    if size is not None:
+        if (
+            not isinstance(size, (tuple, list))
+            or len(size) != 2
+            or not all(isinstance(value, (int, float)) for value in size)
+        ):
+            raise ValueError(
+                f"Invalid image size for {name}: {size}"
+            )
+
+        size = (int(size[0]), int(size[1]))
+
+        if img.get_size() != size:
+            img = pygame.transform.scale(img, size)
+
+    return img
 
 
 def load_animations(size):
