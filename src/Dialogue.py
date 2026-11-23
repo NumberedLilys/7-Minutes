@@ -1,24 +1,16 @@
 BEDROOM_DIALOGUES = {
-    "lyra": {
+    "bookshelf": {
         "start": {
-            "speaker": "Lyra",
-            "text": "Meow!",
-            "options": [{"text": "Pet", "next": "pet"},
-                        {"text": "Leave", "next": None}]
+            "speaker": "Blank",
+            "text": "A shelf full of books. Some are visually worn out, as though read a lot.",
+            "options": [{"text": "Next", "next": None}]
         },
-        "pet": {
-            "start": {
-                "speaker": "Blank",
-                "text": "You pet Lyra, just like every other morning",
-                "options": [{"text": "Back", "next": None}]
-            },
-        }
     },
     "bed": {
         "start": {
             "speaker": "Blank",
-            "text": "A messy bed. You've never had the energy to make it in the morning",
-            "options": [{"text": "Back", "next": None}]
+            "text": "A messy bed. You've never had the energy to make it in the morning.",
+            "options": [{"text": "Next", "next": None}]
         },
     },
     "flowers": {
@@ -33,19 +25,19 @@ BEDROOM_DIALOGUES = {
         "throw out": {
             "speaker": "Maynne",
             "text": "Lilies were never my favourite flower anyways.",
-            "options": [{"text": "Back", "next": None}]
+            "options": [{"text": "Next", "next": None}]
         },
         "leave": {
             "speaker": "Maynne",
             "text": "The flowers make the room smell fresh. There would be no reason to remove them.",
-            "options": [{"text": "Back", "next": None}]
+            "options": [{"text": "Next", "next": None}]
         }
     },
     "wall decor": {
         "start": {
             "speaker": "Blank",
-            "text": "Posters of your favourite band. It would have been nice if you bought tickets when they were on tour",
-            "options": [{"text": "Back", "next": None},]
+            "text": "Random notes scattered about. One is listed from last year describing a grocery list.",
+            "options": [{"text": "Next", "next": None},]
             }
     },
     "lyra": {
@@ -53,12 +45,19 @@ BEDROOM_DIALOGUES = {
             "speaker": "Lyra",
             "text": "Meow!",
             "options": [{"text": "Pet", "next": "pet"},
-                        {"text": "Back", "next": None}]
+                        {"text": "Next", "next": None}]
         },
         "pet": {
             "speaker": "Blank",
-            "text": "My cat. My absolute favourite part of every morning.",
-            "options": [{"text": "Back", "next": None}]
+            "text": "You pet Lyra. The best part of every morning",
+            "options": [{"text": "Next", "next": None}]
+        }
+    },
+    "calendar": {
+        "start": {
+            "speaker": "Blank",
+            "text": "Your calendar. The 26th is circled.",
+            "options": [{"text": "Exit", "next": None}]
         }
     }
 }
@@ -76,19 +75,127 @@ KITCHEN_DIALOGUE = {
         "eat": {
             "speaker": "Maynne",
             "text": "What a great start to my day. My mother's cooking has never let me down.",
-            "options": [{"text": "Back", "next": None}]
+            "options": [{"text": "Next", "next": None}]
         },
         "leave": {
             "speaker": "Maynne",
             "text": "I couldn't bring myself to eat them. My stomach turned at the thought.",
-            "options": [{"text": "Back", "next": None}]
+            "options": [{"text": "Next", "next": None}]
         }
     },
     "calendar": {
         "start": {
             "speaker": "Blank",
             "text": "It's the date. Why is it smudged?",
-            "options": [{"text": "Back", "next": None}]
+            "options": [{"text": "Next", "next": None}]
+        }
+    },
+    "fridge": {
+        "start": {
+                "speaker": "Blank",
+                "text": "The fridge. Your mother already made food, no need to make anything.",
+                "options": [{"text": "Next", "next": None}]
+            }
+    },
+    "bench": {
+        "start": {
+                "speaker": "Blank",
+                "text": "It's a bench. No time to sit down.",
+                "options": [{"text": "Next", "next": None}]
+            }
+    },
+    "coat rack": {
+        "start": {
+                "speaker": "Blank",
+                "text": "It's a coat rack.",
+                "options": [{"text": "Next", "next": None}]
+            }
+    }
+
+}
+
+NEIGHBOURHOOD_DIALOGUE = {
+    "Audra": {
+        "start": {
+            "speaker": "Audra",
+            "text": "Hi, Maynne. I didn't see you at the study group yesterday.",
+            "options": [{"text": "I'm sorry. I've been busy. (Apologize)", "next": "apologize"},
+                        {"text": "And what of it? (Defensive)", "next": "defensive"}]
+        },
+        "apologize": {
+            "speaker": "Maynne",
+            "text": "I'm sorry, Audra. I haven't had much time lately. I will try to go to the next one.",
+            "options": [{"text": "Continue", "next": "okay!"}]
+        },
+        "defensive": {
+            "speaker": "Maynne",
+            "text": "Why do you need to know? Get off my case, already. I was busy.",
+            "options": [{"text": "Continue", "next": "oh..."}]
+        },
+        "okay!": {
+            "speaker": "Audra",
+            "text": "Don't worry about it. I'm just glad to see you doing alright. I'll see you at school!",
+            "options": [{"text": "Exit", "next": None}]
+        },
+        "oh...": {
+            "speaker": "Audra",
+            "text": "Oh.. I'm sorry for asking, then. I'll see you later...",
+            "options": [{"text": "Exit", "next": None}]
+        }
+    },
+    "bus stop": {
+            "start": {
+                "speaker": "Blank",
+                "text": "Taking the bus was typically quicker than walking.",
+                "options": [{"text": "Go to school?", "next": "go to school"},
+                            {"text": "Wait", "next": None}]
+            },
+            "go to school": {
+                "speaker": "Blank",
+                "text": "No reason to stay here.",
+                "options": [{"text": "Continue", "next": None}]
+            }
+        }
+}
+
+CAMPUS_DIALOGUE = {
+    "classroom": {
+        "start": {
+            "speaker": "Blank",
+            "text": "Class is starting. The study group runs at the same time.",
+            "options": [{"text": "Go to class. You will miss the study group if so.", "next": "go to class"},
+                        {"text": "Wait", "next": None}]
+        },
+        "go to class": {
+            "speaker": "Maynne",
+            "text": "I should attend class.",
+            "options": [{"text": "Continue", "next": None}]
+        }
+    },
+    "study group": {
+        "start": {
+            "speaker": "Blank",
+            "text": "The study group is starting. Class runs at the same time.",
+            "options": [{"text": "Go to the study group. You will miss class if so.", "next": "go to study group"},
+                        {"text": "Wait", "next": None}]
+        },
+        "go to study group": {
+            "speaker": "Maynne",
+            "text": "I should go to the study group.",
+            "options": [{"text": "Continue", "next": None}]
+        }
+    },
+    "roof": {
+        "start": {
+            "speaker": "Blank",
+            "text": "Go to the roof? You will miss the study group and class.",
+            "options": [{"text": "Go to the roof. Class and studying can wait.", "next": "go to roof"},
+                        {"text": "Wait", "next": None}]
+        },
+        "go to roof": {
+            "speaker": "Maynne",
+            "text": "I will attend class and the study group tomorrow.",
+            "options": [{"text": "Continue", "next": None}]
         }
     }
 }
@@ -106,12 +213,12 @@ TIMED_DIALOGUE = {
             "respond breakfast": {
                 "speaker": "Maynne",
                 "text": "Coming, Mom!",
-                "options": [{"text": "Back", "next": None}]
+                "options": [{"text": "Next", "next": None}]
             },
             "ignore breakfast": {
                 "speaker": "Maynne",
                 "text": "...",
-                "options": [{"text": "Back", "next": None}]
+                "options": [{"text": "Next", "next": None}]
             }
     },
     "death_ending": {

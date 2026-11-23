@@ -5,7 +5,7 @@ from Load import load_animations, ROOT_DIR, load_image
 from Backgrounds import create_backgrounds, create_buttons
 from Items import create_bedroom_items, create_kitchen_items, create_neighbourhood_items, create_campus_items
 from Timer import GameTimer
-from Dialogue import BEDROOM_DIALOGUES, TIMED_DIALOGUE
+from Dialogue import BEDROOM_DIALOGUES, TIMED_DIALOGUE, NEIGHBOURHOOD_DIALOGUE, KITCHEN_DIALOGUE
 from timedEvents import setup_timed_events
 from Audio import audio
 from Fade import Fade
@@ -48,6 +48,7 @@ neighbourhood_items = create_neighbourhood_items()
 campus_items = create_campus_items()
 
 BEDROOM_DIALOGUES["flowers"]["start"]["options"][0]["action"] = bedroom_items["flowers"].remove
+KITCHEN_DIALOGUE["breakfast"]["start"]["options"][0]["action"] = kitchen_items["breakfast"].remove
 
 my_character = Player(animations, MAYNNE_X, MAYNNE_Y, backgrounds["bedroom"].world_width) #changed for game resolution
 
@@ -89,6 +90,11 @@ def game():
     while True:
         dt = clock.tick(60)
         timer.update(dt)
+        clicked_background = None
+        def clicked():
+            nonlocal clicked_background
+            clicked_background = "campus"
+
         fade.update(dt)
         if fade.finished and not ending_state["text_active"]:
             ending_state["text_active"] = True
@@ -116,6 +122,11 @@ def game():
                 dialogue.handle_event(event) # if text box open, no click items
 
             elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1: # if text box not open, click items
+                #converting window mouse position to logical game coords
+                mouse_x = event.pos[0]/ SCALE + camera_x
+                mouse_y = event.pos[1]/ SCALE
+
+                logic_mouse_pos = (mouse_x, mouse_y)
                 if current_background == "bedroom":
                     camera_x = backgrounds[current_background].camera_x
 
@@ -131,23 +142,20 @@ def game():
                         if triggered_dialogue:
                             dialogue.start(triggered_dialogue)
                             break
-                elif current_background == "kitchen":
-                    camera_x = backgrounds[current_background].camera_x
-                    
+
                 elif current_background == "neighbourhood":
                     camera_x = backgrounds[current_background].camera_x
                     mouse_x = event.pos[0] / SCALE + camera_x
                     mouse_y = event.pos[1] / SCALE
                     stop_sign = neighbourhood_items["stop_sign"]
+                    triggered_dialogue = neighbourhood_items["stop_sign"].check_click(logic_mouse_pos)
 
                     if stop_sign.hitbox.collidepoint((mouse_x, mouse_y)):
-                        clicked_background = "campus"
+                        dialogue.start(triggered_dialogue)
+                        NEIGHBOURHOOD_DIALOGUE["bus stop"]["go to school"]["options"][0]["action"] = clicked
 
-                    #converting window mouse position to logical game coords
-                    mouse_x = event.pos[0]/ SCALE + camera_x
-                    mouse_y = event.pos[1]/ SCALE
-
-                    logic_mouse_pos = (mouse_x, mouse_y)
+                elif current_background == "kitchen":
+                    camera_x = backgrounds[current_background].camera_x
 
                     for item in kitchen_items.values():
                         triggered_dialogue = item.check_click(logic_mouse_pos)
@@ -278,7 +286,7 @@ def game():
 # ================ START SCREEN FUNCTION ==============
 def start_screen():
     current_background = "opening_screen"
-    start_buttons = create_buttons(BUTTON_WIDTH, BUTTON_HEIGHT)
+    buttons = create_buttons(BUTTON_WIDTH, BUTTON_HEIGHT)
 
     audio.play_music("start")
 
@@ -290,19 +298,28 @@ def start_screen():
         mouse_pressed = pygame.mouse.get_pressed()
 
         play_button = pygame.Rect(695, 301, BUTTON_WIDTH, BUTTON_HEIGHT)
-        quit_button = pygame.Rect(756, 420, BUTTON_WIDTH, BUTTON_HEIGHT)
+        quit_button = pygame.Rect(695, 400, BUTTON_WIDTH, BUTTON_HEIGHT)
 
         # Determine which button image to display
         if play_button.collidepoint(mouse):
             if mouse_pressed[0]:  # Left mouse button is pressed
-                button_image = start_buttons["start_click"]
+                play_button_image = buttons["start_click"]
             else:
-                button_image = start_buttons["start_hover"]
+                play_button_image = buttons["start_hover"]
         else:
-            button_image = start_buttons["regular"]
+            play_button_image = buttons["start_regular"]
+
+        if quit_button.collidepoint(mouse):
+            if mouse_pressed[0]:
+                quit_button_image = buttons["exit_click"]
+            else:
+                quit_button_image = buttons["exit_hover"]
+        else:
+            quit_button_image = buttons["exit_regular"]
 
         # Draw the start button
-        screen.blit(button_image, play_button)
+        screen.blit(play_button_image, play_button)
+        screen.blit(quit_button_image, quit_button)
 
         # Handle events
         for event in pygame.event.get():

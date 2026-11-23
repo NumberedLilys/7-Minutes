@@ -23,36 +23,26 @@ class Player(pygame.sprite.Sprite):
 
 # ===============Updates based on player movement left/right===============
     def update(self, dt, dialogue_active=False):
-        if dialogue_active:
-            if self.facing == "right":
-                self.image = self.dialogue_idle_right
-            else:
-                self.image = self.dialogue_idle_left
 
-            self.moving = False
-            self.frame_index = 0
-            self.frame_timer = 0
-            return
-        
         keys = pygame.key.get_pressed()
         self.moving = False
+        if not dialogue_active:
+            if keys[pygame.K_a] or keys[pygame.K_LEFT]:
+                self.rect.x -= self.speed
+                self.facing = "left"
+                self.moving = True
 
-        if keys[pygame.K_a] or keys[pygame.K_LEFT]:
-            self.rect.x -= self.speed
-            self.facing = "left"
-            self.moving = True
+            if keys[pygame.K_d] or keys[pygame.K_RIGHT]:
+                self.rect.x += self.speed
+                self.facing = "right"
+                self.moving = True
 
-        if keys[pygame.K_d] or keys[pygame.K_RIGHT]:
-            self.rect.x += self.speed
-            self.facing = "right"
-            self.moving = True
+            if (keys[pygame.K_a] and keys[pygame.K_d]
+                    or keys[pygame.K_a] and keys[pygame.K_RIGHT]
+                    or keys[pygame.K_LEFT] and keys[pygame.K_d]
+                    or keys[pygame.K_LEFT] and keys[pygame.K_RIGHT]):
 
-        if (keys[pygame.K_a] and keys[pygame.K_d]
-                or keys[pygame.K_a] and keys[pygame.K_RIGHT]
-                or keys[pygame.K_LEFT] and keys[pygame.K_d]
-                or keys[pygame.K_LEFT] and keys[pygame.K_RIGHT]):
-
-            self.moving = False
+                self.moving = False
 
         self.rect.left = max(self.rect.left, 0)
         self.rect.right = min(self.rect.right, self.world_width)

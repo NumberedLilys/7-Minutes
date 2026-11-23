@@ -1,6 +1,6 @@
 from Objects import Object
 from Load import load_image, BEDROOM_OBJECT_DIR, BEDROOM_DIR, KITCHEN_DIR, NEIGHBOURHOOD_DIR, CAMPUS_DIR
-from Dialogue import BEDROOM_DIALOGUES, KITCHEN_DIALOGUE
+from Dialogue import BEDROOM_DIALOGUES, KITCHEN_DIALOGUE, NEIGHBOURHOOD_DIALOGUE, CAMPUS_DIALOGUE
 from Characters import Character
 import pygame
 
@@ -29,7 +29,8 @@ def create_bedroom_items(animations):
         "book_shelf": Object(
             "Bookshelf",
             load_image("Bookshelf.png", None, BEDROOM_DIR),
-            0,10
+            0,10,
+            dialogue = BEDROOM_DIALOGUES["bookshelf"]
         ),
         "dresser": Object(
             "Dresser",
@@ -39,7 +40,8 @@ def create_bedroom_items(animations):
         "calendar": Object(
             "Calendar",
             load_image("Calendar.png", None, BEDROOM_OBJECT_DIR),
-            456,41
+            456,41,
+            dialogue = BEDROOM_DIALOGUES["calendar"]
         ),
         "lyra": Character(
             "lyra",
@@ -63,19 +65,20 @@ def create_kitchen_items():
         "cabinets": Object(
             "Cabinets",
             load_image("Cabinets.png", None, KITCHEN_DIR),
-            360, 8,
+            360, 8
         ),
 
         "counter": Object(
             "Counter",
             load_image("Counter.png", None, KITCHEN_DIR),
-            360, 95,
+            360, 95
         ),
 
         "fridge": Object(
             "Fridge",
             load_image("Fridge.png", None, KITCHEN_DIR),
             600, 40,
+            dialogue = KITCHEN_DIALOGUE["fridge"]
         ),
         "breakfast": Object(
             "Breakfast",
@@ -86,7 +89,8 @@ def create_kitchen_items():
         "bench": Object(
             "Bench",
             load_image("Bench.png", None, KITCHEN_DIR),
-            738, 127
+            738, 127,
+            dialogue = KITCHEN_DIALOGUE["bench"]
         ),
         "calendar": Object(
             "Calendar",
@@ -97,7 +101,8 @@ def create_kitchen_items():
         "coat_rack": Object(
             "Coat Rack",
             load_image("CoatRack.png", None, KITCHEN_DIR),
-            768, 64
+            768, 64,
+            dialogue = KITCHEN_DIALOGUE["coat rack"]
         )
 
     }
@@ -111,6 +116,7 @@ def create_neighbourhood_items():
             "Stop Sign",
             load_image("BusStop.png", None, NEIGHBOURHOOD_DIR),
             252, 40,
+            dialogue=NEIGHBOURHOOD_DIALOGUE["bus stop"]
         ),
 
     }
@@ -132,17 +138,20 @@ def create_campus_items():
         "classroom_door": Object(
             "Classroom Door",
             load_image("ClassroomDoor.png", None, CAMPUS_DIR),
-            464,73
+            464,73,
+            dialogue = CAMPUS_DIALOGUE["classroom"]
         ),
         "Studyroom_Door": Object(
             "Studyroom Door",
             load_image("StudyDoor.png", None, CAMPUS_DIR),
-            625,73
+            625,73,
+            dialogue = CAMPUS_DIALOGUE["study group"]
         ),
         "FireExit_Door": Object(
             "FireExit Door",
             load_image("FireExitDoor.png", None, CAMPUS_DIR),
-            874,74
+            874,74,
+            dialogue = CAMPUS_DIALOGUE["roof"]
         )
 
     }
