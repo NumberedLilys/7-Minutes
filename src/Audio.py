@@ -1,4 +1,8 @@
-""" audio.play_music("start")           start screen and loading screen
+"""Game audio. Everything needed is in this file.
+
+    from Audio import audio
+
+    audio.play_music("start")           start screen and loading screen
     audio.play_ambience("bedroom")      when a scene or room begins (safe to call every frame)
     audio.play_dialogue_line(speaker)   when a new dialogue line appears
     audio.play_sound("click")           when a menu option is moved or picked
@@ -6,6 +10,7 @@
 Music and ambience loop until the next scene begins.
 Scene names: bedroom, living_room, kitchen, outside, bus, hallway, study, death.
 
+To add a sound: put the file in assets/audio and add a line to SOUNDS.
 Credits are in assets/audio/CREDITS.md.
 """
 
@@ -54,7 +59,7 @@ class AudioManager:
         self.loaded = {}
         self.warned = set()
         self.current_music = None
-        self.current_scene = None
+        self.current_ambience = None
 
         try:
             if not pygame.mixer.get_init():
@@ -89,7 +94,12 @@ class AudioManager:
             return None
         if name not in self.loaded:
             path = self.find_file(name)
-            sound = pygame.mixer.Sound(str(path)) if path else None
+            sound = None
+            if path:
+                try:
+                    sound = pygame.mixer.Sound(str(path))
+                except pygame.error as error:
+                    print(f"[audio] could not load {path.name}: {error}")
             if sound:
                 sound.set_volume(SOUNDS[name][1] * self.volume)
             self.loaded[name] = sound
@@ -101,9 +111,12 @@ class AudioManager:
         self.current_music = name
         path = self.find_file(name)
         if path:
-            pygame.mixer.music.load(str(path))
-            pygame.mixer.music.set_volume(SOUNDS[name][1] * self.volume)
-            pygame.mixer.music.play(-1, fade_ms=fade_ms)
+            try:
+                pygame.mixer.music.load(str(path))
+                pygame.mixer.music.set_volume(SOUNDS[name][1] * self.volume)
+                pygame.mixer.music.play(-1, fade_ms=fade_ms)
+            except pygame.error as error:
+                print(f"[audio] could not play {path.name}: {error}")
 
     def stop_music(self, fade_ms=1000):
         if self.enabled:
@@ -111,24 +124,30 @@ class AudioManager:
             pygame.mixer.music.fadeout(fade_ms)
 
     def play_ambience(self, scene, fade_ms=1500):
-        if not self.enabled or scene == self.current_scene:
+        if not self.enabled:
             return
         if scene not in SCENE_AMBIENCE:
-            print(f"[audio] no ambience set for scene '{scene}'")
+            if scene not in self.warned:
+                self.warned.add(scene)
+                print(f"[audio] no ambience set for scene '{scene}'")
             return
-        self.current_scene = scene
+
+        name = SCENE_AMBIENCE[scene]
+        if name == self.current_ambience:
+            return
+        self.current_ambience = name
 
         self.stop_music(fade_ms)
         self.ambience_channels[self.active_ambience].fadeout(fade_ms)
 
-        sound = self.get_sound(SCENE_AMBIENCE[scene])
+        sound = self.get_sound(name)
         if sound:
             self.active_ambience = 1 - self.active_ambience
             self.ambience_channels[self.active_ambience].play(sound, loops=-1, fade_ms=fade_ms)
 
     def stop_ambience(self, fade_ms=1500):
         if self.enabled:
-            self.current_scene = None
+            self.current_ambience = None
             self.ambience_channels[self.active_ambience].fadeout(fade_ms)
 
     def play_sound(self, name):
