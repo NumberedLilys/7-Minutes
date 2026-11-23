@@ -239,6 +239,65 @@ interactions = {
         ("Maynne", "See you there?, then.", "speech"),
         ("Audra", "Yeah. See you.", "speech"),
     ],
+    
+    # University 
+    "UniArrival": [
+        ("Maynne", "Made it Barely.", "think"),
+        ("Maynne", "Okay, Class is this way. Study room upstairs.", "think"),
+        ("Maynne", "Where am I going again?", "think"),
+        ("Maynne", "Professor doing the review today. I really should go.", "think"),
+        ("Maynne", "But Audra wanted me to study today.", "think"),
+        ("Maynne", "I can't do both, can I?", "think"),
+    ],
+    
+    # Choice A: Attend Class
+    "AttendClass": [
+        ("Maynne", "Okay, Focus.", "think"),
+        ("Audra", "Are you coming to the study group?", "speech"),
+        ("Maynne", "Sorry, Audra. Class comes first today.", "think"),
+    ],
+    
+    
+    # Choice B: Join the Study Group
+    "StudyGroup": [
+        ("Audra", "You actually came!", "speech"),
+        ("Maynne", "Don't make it a big deal.", "speech"),
+        ("Audra", "Come on, help me with this question.", "speech"),
+        ("Maynne", "Alright, let's see.", "speech"),
+    ],
+    
+    # University Hallway
+    "PhoneCall": [
+        ("Maynne", "Mom?", "think"),
+        ("Maynne", "Didn't I tell her I'd call her later?", "think"),
+    ],
+    
+    # Choice A: Pick up the phone
+    "PhonePickUp": [
+        ("Maynne", "Hey Mom.", "speech"),
+        ("Mom", "Hey, sweetheart. Just checking in. How's your day?", "speech"),
+        ("Maynne", "It's okay. Just heading out of class.", "speech"),
+        ("Mom", "Have you eaten?", "speech"),
+        ("Maynne", "Yes Mom. I'm fine.", "speech"),
+        ("Mom", "Okay. Don't stay out too late. Love you.", "speech"),
+        ("Maynne", "Love you too. I'll see you later.", "speech"),
+        ("Maynne", "She's always checking up on me.", "think")
+    ],
+    
+    # Choice B: Ignore the call
+    "PhoneIgnore": [
+        ("Maynne", "I'll call her back when I get home.", "think"),
+        ("Mom", "Call me when you can.", "speech"),
+        ("Maynne", "Yeah, later.", "think"),
+    ],
+    
+    # Strange Events - Hallway
+    "HallwayScare": [
+        ("Maynne", "What was that?", "speech"),
+        ("Maynne", "Okay... that's weird.", "speech"),
+        ("Maynne", "Hello? Is someone there?", "speech"),
+        ("Maynne", "What the hell!", "speech"),
+    ],
 }
 
 dialogueIndex = 0
@@ -252,6 +311,13 @@ lyra_interacted = False
 flowers_removed = False
 ate_breakfast = False
 audra_response = None
+university_choice = None
+phone_choice = None 
+mom_rushed = False
+
+# Death Menu
+deathDialogue = []
+deathIndex = 0
 
 # Choice Menu
 choice = 0
@@ -281,6 +347,16 @@ audraOptions = [
     "Can we not do this right now? I'm late."
 ]
 
+universityOptions = [
+    "Attend Class",
+    "Join the Study Group"
+]
+
+phoneOptions = [
+    "Pick up", 
+    "Ignore the call"
+]
+
 clock = pygame.time.Clock()
 running = True
 
@@ -297,6 +373,8 @@ def advanceDialogue():
     global lyra_interacted, choice
     global ate_breakfast
     global audra_response
+    global university_choice
+    global phone_choice
     
     if mode == "main":
         dialogueIndex += 1
@@ -374,9 +452,34 @@ def advanceDialogue():
                 return
             
             elif activeInteraction == "BusStop":
-                mode = "bus"
-                activeInteraction = None
+                startInteraction("UniArrival")
                 return 
+            
+            elif activeInteraction == "UniArrival":
+                mode = "university_choice"
+                activeInteraction = None
+                choice = 0
+                return
+            
+            elif activeInteraction in ("AttendClass", "StudyGroup"):
+                startInteraction("PhoneCall")
+                return
+            
+            elif activeInteraction in ("PhoneCall"):
+                mode = "phone_choice"
+                activeInteraction = None
+                choice = 0
+                return
+            
+            elif activeInteraction in ("PhonePickUp", "PhoneIgnore"):
+                startInteraction("HallwayScare")
+                return
+            
+            elif activeInteraction in ("HallwayScare"):
+                mode = "hallway_run"
+                activeInteraction = None
+                choice = 0
+                return
                                 
             mode = "room_menu"
             activeInteraction = None
@@ -410,6 +513,8 @@ def flowerChoice(index):
         startInteraction("Flowers_Leave")
         
 def KitchenOption(index):
+    global mom_rushed
+    
     if index == 0:
         startInteraction("Food")
         
@@ -417,9 +522,11 @@ def KitchenOption(index):
         startInteraction("LyraBowl")
         
     elif index == 2:
+        mom_rushed = False
         startInteraction("KitchenLeaving")
         
     elif index == 3:
+        mom_rushed = True
         startInteraction("KitchenRush")
         
 def FoodOption(index):
@@ -437,12 +544,172 @@ def AudraOption(index):
         startInteraction("Apologize_Audra") 
     elif index == 1:
         audra_response = "dismissed"
-        startInteraction("Dimiss_Audra")   
+        startInteraction("Dimiss_Audra")  
+        
+def UniversityOption(index):
+    global university_choice
+    
+    if index == 0:
+        university_choice = "class"
+        startInteraction("AttendClass")
+        
+    elif index == 1:
+        university_choice = "study_group"
+        startInteraction("StudyGroup")
+
+def PhoneOption(index):
+    global phone_choice
+    
+    if index == 0:
+        phone_choice = "answered"
+        startInteraction("PhonePickUp")
+        
+    elif index == 1:
+        phone_choice = "ignored"
+        startInteraction("PhoneIgnore")
+        
+def buildDeathDialogue():
+    # Create only the regerts caused by Maynne's actual harmful choices. 
+    
+    lines = [
+        ("Maynne", "What?", "speech"),
+        ("Death", "Someone you've been running out of time with.", "speech"),
+        ("Maynne", "Who... who are you?", "speech"),
+        ("Death", "You've been in such a hurry all day.", "speech"),
+        ("Maynne", "I need to get home.", "speech"),
+        ("Death", "Do you?", "speech"),
+    ]
+    
+    # Regret 1: Lyra's death
+    if not flowers_removed:
+        lines.extend([
+            ("Lyra", "*Meow*", "speech"),
+            ("Maynne", "Lyra? What are you doing here?", "speech"),
+            ("Maynne", "Hey buddy. Come here.", "speech"),
+            ("Death", "Do you remember the flowers in your room?", "speech"),
+            ("Maynne", "What? The lilies?", "speech"),
+            ("Death", "You noticed they were dying.", "speech"),
+            ("Maynne", "Yeah…I was going to throw them out.", "speech"),
+            ("Death", "But you didn't.", "speech"),
+            ("Maynne", "Wait...", "speech"),
+            ("Death", "Lyra ate them while you were away.", "speech"),
+            ("Maynne", "No...", "speech"),
+            ("Death", "Lilies are poisonous to cats, Maynne. By the time anyone noticed, it was too late.", "speech"),
+            ("Maynne", "NO, NO, NO!. She wouldn't have…", "speech"),
+            ("Maynne", "I was going to throw them away. I just…I thought I'd do it later.", "speech"),
+            ("Maynne", "She was waiting for me to come home, wasn't she?", "speech"),
+            ("Death", "Perhaps.", "speech"),
+            ("Maynne", "I promised I would play with her when I got back.", "speech"),
+            ("Lyra", "*Meow*", "speech"),
+            ("Maynne", "Lyra, wait! Please...", "speech"),
+        ])
+        
+    # Regret 2: Dismissing Audra (Friendship)
+    if audra_response == "dismissed":
+        lines.extend([
+            ("Audra", "I just miss hanging out with you. That's all.", "speech"),
+            ("Maynne", "Audra...?", "speech"),
+            ("Death", "She reached out to you. She texted you. She waited for you. She tried to make plans with you.", "speech"),
+            ("Maynne", "I was busy. I had school and other things going on.", "speech"),
+            ("Death", "She wasn't asking too much, Maynne. She just wanted you to be there.", "speech"),
+            ("Maynne", "I didn't mean to hurt her.", "speech"),
+            ("Death", "Do you remember what you told her?", "speech"),
+            ("Maynne", "Can we not do this right now? I'm late.", "speech"),
+            ("Maynne", "I was stressed. I didn't mean it like that.", "speech"),
+            ("Death", "She was only trying to be there for you.", "speech"),
+            ("Maynne", "I know… I should've listened.", "speech"),
+        ])
+        
+    # Regret 3: Kitchen Rush 
+    if mom_rushed:
+        lines.extend([
+            ("Mom", "Have a good day, honey. Take care.", "speech"),
+            ("Maynne", "Mom...", "speech"),
+            ("Death", "You were in such a hurry this morning.", "speech"),
+            ("Maynne", "I had to get to class.", "speech"),
+            ("Death", "She wanted to spend a little more time with you. You barely stopped to talk.", "speech"),
+            ("Maynne", "I did say I loved her.", "speech"),
+            ("Death", "You did. But you though there would always be another morning.", "speech"),
+            ("Maynne", "I wanted to see her again.", "speech"),
+        ])
+            
+    # Regret 4: Ignore Mom's Phone Call
+    if phone_choice == "ignored":
+        lines.extend([
+            ("Maynne", "No...", "speech"),
+            ("Death", "Your mother tried to reach you.", "speech"),
+            ("Maynne", "What are you talking about?", "speech"),
+            ("Death", "She needed you.", "speech"),
+            ("Mom", "Maynne, it's Mom. Lyra isn't feeling very well. She's been acting strange, and I'm getting worried. Can you call me back?", "speech"),
+            ("Maynne", "Lyra...?", "speech"),
+            ("Death", "Your mother was worried about her.", "speech"),
+            ("Maynne", "Why didn't she call again?", "speech"),
+            ("Death", "She did. There was another missed call.", "speech"),
+            ("Maynne", "No... I didn't know she was sick!", "speech"),
+            ("Death", "You thought the call could wait.", "speech"),
+            ("Maynne", "I should've picked up...", "speech"),
+        ])
+            
+    elif phone_choice == "answered":
+        lines.extend([
+            ("Mom", "Maynne? Thank goodness. Lyra isn't feeling very well. She's been acting strange, and I'm getting worried.", "speech"),
+            ("Maynne", "I remember that call...", "speech"),
+            ("Death", "You heard that something was wrong. You wanted to go home.", "speech"),
+            ("Maynne", "I should've gone straight home.", "speech"),
+            ("Death", "You tried to get there. But the day had already run out.", "speech"),
+        ])
+            
+    lines.extend([
+        ("Maynne", "Mom...?", "speech"),
+        ("Death", "She made dinner. She made your favourite.", "speech"),
+        ("Maynne", "I was supposed to be home.", "speech"),
+        ("Death", "She waited for the sound of the door opening.", "speech"),
+        ("Maynne", "Please stop.", "speech"),
+        ("Maynne", "I just want to go home.", "speech"),
+        ("Death", "Then why are you still here?", "speech"),
+        ("Maynne", "Because I want to see them. I want everything to go back to normal.", "speech"),
+        ("Death", "Nobody knows their time will come.", "speech"),
+        ("Maynne", "I wasn't ready. I still had plans. I still had things I wanted to do.", "speech"),
+        ("Death", "It's not your regerts that define your life.", "speech"),
+        ("Maynne", "Then why does it feel like I've already lost everything?", "speech"),
+        ("Death", "Maynne, look at me.", "speech"),
+        ("Death", "You still matter.", "speech"),
+        ("Mom", "Love you, sweetheart. Take care.", "speech"),
+        ("Audra", "Same time next week?.", "speech"),
+        ("Maynne", "...I miss them.", "speech"),
+    ])
+    
+    if not flowers_removed: 
+        lines.append(
+            ("Maynne", "I'm sorry, Mom. I'm sorry Lyra. I'm sorry Audra.", "speech")
+        )
+    else:
+        lines.append(
+            ("Maynne", "I'm sorry, Mom. I'm sorry Audra.", "speech") 
+        )
+    lines.extend([
+        ("Maynne", "I'm sorry, everyone.", "speech"),
+        ("Mom", "Maynne? Please call me when you see this.", "speech"),  
+    ])
+        
+    return lines
+    
+def startDeathScene():
+    global mode, deathDialogue, deathIndex
+    deathDialogue = buildDeathDialogue()
+    deathIndex = 0
+    mode = "death"
+    
+def advanceDeathDialogue():
+    global deathIndex, mode
+    deathIndex += 1
+    
+    if deathIndex >= len(deathDialogue):
+        mode = "finished"
 
 def drawMenu(options, heading):
     heading_surface = font.render(heading, True, DIALOGUE_COLOUR)
     canvas.blit(heading_surface, (25, 87))
-    
     choiceRects = []
     
     choiceX = 25
@@ -472,6 +739,42 @@ def drawMenu(options, heading):
         canvas.blit(option_surface,(rect.x + 5, rect.y + 1))
         
     return choiceRects
+
+def getMenuOptions():
+    if mode == "room_menu":
+        return roomOptions
+    
+    elif mode == "flowers_choice":
+        return ["Throw them away", "Leave them"]
+    
+    elif mode == "kitchen_menu":
+        return kitchenOptions
+    
+    elif mode == "food_choice":
+        return foodOptions
+    
+    elif mode == "audra_choice":
+        return audraOptions
+    
+    elif mode == "university_choice":
+        return universityOptions
+    
+    elif mode == "phone_choice":
+        return phoneOptions
+    
+    return None  
+
+def getMenuRect(options):
+    choiceX = 25
+    choiceY = 104
+    choiceWidth = 270
+    choiceHeight = 14
+    choiceGap = 2
+    
+    return[
+        pygame.Rect(choiceX, choiceY + i * (choiceHeight + choiceGap), choiceWidth, choiceHeight)
+        for i in range(len(options))
+    ]   
     
 while running:
     for event in pygame.event.get():
@@ -537,76 +840,86 @@ while running:
                     AudraOption(choice)
                     choice = 0
                     
+            elif mode == "university_choice":
+                if event.key == pygame.K_UP:
+                    choice = (choice - 1) % len(universityOptions)
+                    
+                elif event.key == pygame.K_DOWN:
+                    choice = (choice + 1) % len(universityOptions)
+                    
+                elif event.key in (pygame.K_RETURN, pygame.K_SPACE):
+                    UniversityOption(choice)
+                    choice = 0
+            
+            elif mode == "phone_choice":
+                if event.key == pygame.K_UP:
+                    choice = (choice - 1) % len(phoneOptions)
+                    
+                elif event.key == pygame.K_DOWN:
+                    choice = (choice + 1) % len(phoneOptions)
+                    
+                elif event.key in (pygame.K_RETURN, pygame.K_SPACE):
+                    PhoneOption(choice)
+                    choice = 0
+                    
+            elif mode == "hallway_run":
+                if event.key in (pygame.K_SPACE, pygame.K_RETURN):
+                    startDeathScene()
+                    
+            elif mode == "death":
+                if event.key in (pygame.K_SPACE, pygame.K_RETURN):
+                    advanceDeathDialogue()
+                    
             elif mode in ("main", "interaction"):
                 if event.key in (pygame.K_SPACE, pygame.K_RETURN):
                     advanceDialogue()
                 
         
+
         elif event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 1:
                 mx = event.pos[0] // scale
                 my = event.pos[1] // scale
                 
-                if mode == "room_menu":
-                    rects = drawMenu(roomOptions, "What would you like to do?")
-                    
-                    for i, rect in enumerate(rects):
-                        if rect.collidepoint(mx, my):
-                            RoomOption(i)
-                            choice = 0
-                            break
-
-            elif mode == "flowers_choice":
-                rects = drawMenu(
-                    ["Throw them away", "Leave them"],
-                    "What should Maynne do?"
-                )
-
-                for i, rect in enumerate(rects):
-                    if rect.collidepoint(mx, my):
-                        flowerChoice(i)
-                        choice = 0
-                        break
-
-            elif mode == "kitchen_menu":
-                rects = drawMenu(
-                    kitchenOptions,
-                    "What would you like to do?"
-                )
-
-                for i, rect in enumerate(rects):
-                    if rect.collidepoint(mx, my):
-                        KitchenOption(i)
-                        choice = 0
-                        break
-
-            elif mode == "food_choice":
-                rects = drawMenu(
-                    foodOptions,
-                    "What should Maynne do?"
-                )
-
-                for i, rect in enumerate(rects):
-                    if rect.collidepoint(mx, my):
-                        FoodOption(i)
-                        choice = 0
-                        break
-            
-            elif mode == "audra_choice":
-                rects = drawMenu(
-                    audraOptions,
-                    "How does Maynne respond?"
-                )
+                if mode in ("main", "interaction", "death"):
+                    advanceDialogue() if mode != "death" else advanceDeathDialogue()
                 
-                for i, rect in enumerate(rects):
-                    if rect.collidepoint(mx, my):
-                        AudraOption(i)
-                        choice = 0
-                        break
-
-            elif mode in ("main", "interaction"):
-                if arrowRect.collidepoint(mx, my):
-                    advanceDialogue()
+                elif mode == "hallway_run":
+                    startDeathScene()
+                
+                else:
+                    options = getMenuOptions()
+                
+                    if options is not None:
+                        rects = getMenuRect(options)
+                        
+                        for i, rect in enumerate(rects):
+                            if rect.collidepoint(mx, my):
+                                choice = i
+                                
+                                if mode == "room_menu":
+                                    RoomOption(i)
+                                    
+                                elif mode == "flowers_choice":
+                                    flowerChoice(i)
+                                    
+                                elif mode == "kitchen_menu":
+                                    KitchenOption(i)
+                                    
+                                elif mode == "food_choice":
+                                    FoodOption(i)
+                                
+                                elif mode == "audra_choice":
+                                    AudraOption(i)
+                                
+                                elif mode == "university_choice":
+                                    UniversityOption(i)
+                                
+                                elif mode == "phone_choice":
+                                    PhoneOption(i)
+                                    
+                                choice = 0
+                                break
 
     canvas.fill((10, 9, 14))
     
@@ -615,13 +928,15 @@ while running:
     elif mode == "interaction":
         current_lines = interactions[activeInteraction]
         speaker, line, dialogue_type = current_lines[interactionIndex]
+    elif mode == "death":
+        speaker, line, dialogue_type = deathDialogue[deathIndex]
         
     else:
         speaker = None
         line = None
         dialogue_type = None
         
-    if mode in ("main", "interaction"):
+    if mode in ("main", "interaction", "death"):
         if dialogue_type == "think":
             text_colour = THINK_COLOUR
         else:
@@ -630,7 +945,7 @@ while running:
         canvas.blit(dialogueBox, (boxX, boxY))
 
         if dialogue_type == "speech":
-            canvas.blit(nameplates[speaker], (nameplateX, nameplateY))
+            canvas.blit(nameplates.get(speaker, nameplates["Blank"]), (nameplateX, nameplateY))
 
         text_lines = textWrap(line, font, dialogueBox.get_width() - 24)
 
@@ -665,7 +980,22 @@ while running:
         
     elif mode == "bus":
         end_text = font.render("The bus pulls away...", True, DIALOGUE_COLOUR)
-        canvas.blit(end_text, (boxX + 12, boxY + 12))    
+        canvas.blit(end_text, (boxX + 12, boxY + 12))
+        
+    elif mode == "university_choice":
+        drawMenu(universityOptions, "Where should Maynne go?") 
+    
+    elif mode == "phone_choice":
+        drawMenu(phoneOptions, "Answer the phone?")
+        
+    elif mode == "hallway_run":
+        end_text = font.render("Maynne runs for her life..", True, DIALOGUE_COLOUR)
+        canvas.blit(end_text, (boxX + 12, boxY + 12))   
+        end_text = font.render("Press SPACE to continue", True, DIALOGUE_COLOUR)
+    
+    elif mode == "finished":
+        end_text = font.render("THE END!", True, DIALOGUE_COLOUR)
+        canvas.blit(end_text, (boxX + 12, boxY + 12))   
 
     scaled = pygame.transform.scale(canvas, screen.get_size())
     screen.blit(scaled, (0, 0))
