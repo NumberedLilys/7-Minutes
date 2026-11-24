@@ -18,8 +18,9 @@ import pathlib
 import re
 
 import pygame
+from Load import ROOT_DIR
 
-AUDIO_DIR = pathlib.Path(__file__).parent.parent / "assets" / "audio"
+AUDIO_DIR = ROOT_DIR / "assets" / "audio"
 AUDIO_EXTENSIONS = (".wav", ".mp3", ".ogg", ".flac")
 
 # name: (file, volume from 0 to 1)
