@@ -122,10 +122,10 @@ class DialogueManager:
 
         node = self.tree[self.current_node_id] # set current node from dictionary
         screen_w, screen_h = surface.get_size()
-        box_w, box_h =280, 50
+        box_w, box_h = 280, 50 # was 280, 50
         box_rect = pygame.Rect(
             (surface.get_width() - box_w) // 2,
-            surface.get_height() - box_h -115,
+            surface.get_height() - box_h - 115,
             box_w,
             box_h,
         )
@@ -136,13 +136,13 @@ class DialogueManager:
             plate_img = self.nameplates[speaker_key]
             name_rect = plate_img.get_rect(
                 topleft=(box_rect.left + 8, 
-                         box_rect.top - plate_img.get_height() + 4)
+                         box_rect.top - plate_img.get_height() + 8) # 4
                          ) # estimated numbers
             
             surface.blit(plate_img, name_rect) # draw nameplate over top left of text box
         padding = 8
         text_x = box_rect.left + padding
-        text_y = box_rect.top + 12
+        text_y = box_rect.top + 12 # 12
         line_height = self.font.get_linesize()
         text_lines = text_wrap(node["text"], self.font, box_w - padding * 2)
 

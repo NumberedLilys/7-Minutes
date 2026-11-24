@@ -40,16 +40,21 @@ def create_backgrounds(screen_width, screen_height):
             left_target="neighbourhood"
         ),
         "class": Background(
-            load_image("ClassRoom.png", None, BACKGROUND_DIR),
+            load_image("ClassRoom.png", (320, 180), BACKGROUND_DIR),
             screen_width,
             screen_height,
-            right_target="roof"
+            right_target="rooftop"
         ),
         "studyroom": Background(
-            load_image("StudyRoom.png", None, BACKGROUND_DIR),
+            load_image("StudyRoom.png", (320, 180), BACKGROUND_DIR),
             screen_width,
             screen_height,
-            right_target="roof"
+            right_target="rooftop"
+        ),
+        "rooftop": Background(
+            load_image("Rooftop.png", None, BACKGROUND_DIR),
+            screen_width,
+            screen_height
         )
     }
 

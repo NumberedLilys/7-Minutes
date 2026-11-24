@@ -1,6 +1,3 @@
-# Adding a dictionary of events that occur at specific times.
-import pygame
-
 class GameTimer:
     def __init__(self, minute_total = 7):
         self.duration_ms = minute_total * 60 * 1000

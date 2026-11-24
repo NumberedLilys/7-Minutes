@@ -115,7 +115,7 @@ KITCHEN_DIALOGUE = {
 }
 
 NEIGHBOURHOOD_DIALOGUE = {
-    "Audra": {
+    "audra": {
         "start": {
             "speaker": "Audra",
             "text": "Hi, Maynne. I didn't see you at the study group yesterday.",

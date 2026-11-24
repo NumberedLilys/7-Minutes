@@ -25,7 +25,7 @@ AUDIO_EXTENSIONS = (".wav", ".mp3", ".ogg", ".flac")
 # name: (file, volume from 0 to 1)
 SOUNDS = {
     "start": ("Start screen and loading.mp3", 0.5),
-    "morning": ("Morning ambience.wav", 0.6),
+    "morning": ("Morning ambience.wav", 0.2),
     "outdoor": ("Outdoor ambience.wav", 0.6),
     "bus": ("Inside bus.wav", 0.6),
     "hallway": ("Hallway.wav", 0.3),

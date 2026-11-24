@@ -45,7 +45,7 @@ backgrounds = create_backgrounds(GAME_WIDTH, GAME_HEIGHT)
 
 bedroom_items = create_bedroom_items(animations)
 kitchen_items = create_kitchen_items()
-neighbourhood_items = create_neighbourhood_items()
+neighbourhood_items = create_neighbourhood_items(animations)
 campus_items = create_campus_items()
 roof_items = create_roof_items(death_animations, MAYNNE_X + 75)
 
@@ -59,6 +59,7 @@ all_sprites.add(my_character)
 END_DIR = ROOT_DIR / "assets" / "characters"
 
 def game():
+    audra_state = True
     current_background = "bedroom"
     my_character.world_width = backgrounds[current_background].world_width
 
@@ -68,8 +69,11 @@ def game():
     ending_state = {
         "image_active": False,
         "text_active": False,
-        "waiting_for_input": False
+        "waiting_for_input": False,
+        "death_timer_active": False,
+        "death_dialogue_started": False
     }
+    roof_trigger = pygame.Rect(50, 110, 20, 30)
 
     def start_ending_text():
         fade.start()
@@ -85,6 +89,16 @@ def game():
     while True:
         dt = clock.tick(60)
         timer.update(dt)
+
+        if (
+            ending_state["death_timer_active"]
+            and timer.finished
+            and not ending_state["death_dialogue_started"]
+        ):
+            ending_state["death_dialogue_started"] = True
+            ending_state["image_active"] = True
+            dialogue.queue(TIMED_DIALOGUE["death_ending"])
+
         clicked_background = None
 
         def clicked(back): # CHANGE TO WORK WITH ANY BACKGROUND CHANGE???
@@ -155,9 +169,16 @@ def game():
                     stop_sign = neighbourhood_items["stop_sign"]
                     triggered_dialogue = stop_sign.check_click(logic_mouse_pos)
 
+                    audra_dialogue = neighbourhood_items["Audra"]
+                    triggered = audra_dialogue.check_click(logic_mouse_pos)
+
+                    if audra_dialogue.hitbox.collidepoint((mouse_x, mouse_y)) and audra_state == True:
+                        audra_state = False
+                        dialogue.start(triggered)
+
                     if stop_sign.hitbox.collidepoint((mouse_x, mouse_y)):
                         dialogue.start(triggered_dialogue)
-                        NEIGHBOURHOOD_DIALOGUE["bus stop"]["go to school"]["options"][0]["action"] = clicked
+                        NEIGHBOURHOOD_DIALOGUE["bus stop"]["go to school"]["options"][0]["action"] = lambda : clicked("campus")
 
                 elif current_background == "campus":
                     camera_x = backgrounds[current_background].camera_x
@@ -172,17 +193,27 @@ def game():
 
                     if classroom.hitbox.collidepoint((mouse_x, mouse_y)):
                         dialogue.start(classroom_dialogue)
-                        CAMPUS_DIALOGUE["classroom"]["go to class"]["options"][0]["action"] = clicked("class")
+                        CAMPUS_DIALOGUE["classroom"]["go to class"]["options"][0]["action"] = lambda : clicked("class")
 
                     elif studyroom.hitbox.collidepoint((mouse_x, mouse_y)):
                         dialogue.start(studyroom_dialogue)
-                        CAMPUS_DIALOGUE["study group"]["go to study group"]["options"][0]["action"] = clicked
+                        CAMPUS_DIALOGUE["study group"]["go to study group"]["options"][0]["action"] = lambda : clicked("study")
 
                     elif roof.hitbox.collidepoint((mouse_x, mouse_y)):
                         dialogue.start(roof_dialogue)
-                        CAMPUS_DIALOGUE["roof"]["go to roof"]["options"][0]["action"] = clicked
+                        CAMPUS_DIALOGUE["roof"]["go to roof"]["options"][0]["action"] = lambda : clicked("roof")
+
+                elif current_background == "roof":
+                    pass
         
         all_sprites.update(dt, dialogue.active)
+        if current_background == "rooftop":
+            if (
+                roof_trigger.colliderect(my_character.rect)
+                and not ending_state["death_timer_active"]
+            ):
+                ending_state["death_timer_active"] = True
+                timer.set_speed(100)
 
         #updating camera After player movement
         backgrounds[current_background].update_camera(my_character.rect)
@@ -201,6 +232,7 @@ def game():
                 item.draw(canvas, camera_x)
 
         elif current_background == "neighbourhood":
+            neighbourhood_items["audra"].update(dt)
             for item in neighbourhood_items.values():
                 item.draw(canvas, camera_x)
 

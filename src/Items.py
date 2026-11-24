@@ -109,7 +109,7 @@ def create_kitchen_items():
 
     return items
 
-def create_neighbourhood_items():
+def create_neighbourhood_items(animations):
 
     items = {
         "stop_sign": Object(
@@ -118,6 +118,17 @@ def create_neighbourhood_items():
             252, 40,
             dialogue=NEIGHBOURHOOD_DIALOGUE["bus stop"]
         ),
+        "audra": Character(
+            "audra",
+            animations["audra_idle"],
+            280, 110
+        ),
+        "Audra": Object(
+            "audra",
+            pygame.Surface((280, 110), pygame.SRCALPHA),
+            280, 110,
+            dialogue = NEIGHBOURHOOD_DIALOGUE["audra"]
+        )
 
     }
 
@@ -167,4 +178,3 @@ def create_roof_items(animations, x):
         )
     }
     return items
-    
