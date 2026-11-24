@@ -26,6 +26,7 @@ class DialogueManager:
         self.box_image = box_image
         self.nameplates = nameplates
         self.scale = scale
+        self.choice_history = []
 
         self.dialogue_queue = []
 
@@ -52,6 +53,8 @@ class DialogueManager:
             return
 
         selected_option = options[index]
+        if "ending_entry" in selected_option and selected_option["ending_entry"] not in self.choice_history:
+            self.choice_history.append(selected_option["ending_entry"])
 
         action = selected_option.get("action")
 

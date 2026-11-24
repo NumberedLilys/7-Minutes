@@ -59,7 +59,16 @@ all_sprites.add(my_character)
 END_DIR = ROOT_DIR / "assets" / "characters"
 
 def game():
-    audra_state = True
+    dialogue.choice_history.clear()
+    audra_state = {
+        "talked_to": False
+    }
+    flower_state = {
+        "interacted": False
+    }
+    lyra_state = {
+        "pet": False
+    }
     current_background = "bedroom"
     my_character.world_width = backgrounds[current_background].world_width
 
@@ -76,6 +85,15 @@ def game():
     roof_trigger = pygame.Rect(50, 110, 20, 30)
 
     def start_ending_text():
+        if audra_state["talked_to"] == False:
+            dialogue.choice_history.append("Never spoke to Audra")
+
+        if flower_state["interacted"] == False:
+            dialogue.choice_history.append("Didn't throw out flowers, letting Lyra die")
+
+        if lyra_state["pet"] == False:
+            dialogue.choice_history.append("Did not pet Lyra")
+
         fade.start()
 
     TIMED_DIALOGUE["death_ending"]["maynne_response_6"]["options"][0]["action"] = start_ending_text
@@ -145,11 +163,22 @@ def game():
 
                     logic_mouse_pos = (mouse_x, mouse_y)
 
+                    flower_dialogue = bedroom_items["flowers"]
+                    triggered = flower_dialogue.check_click(logic_mouse_pos)
+
+                    lyra_dialogue = bedroom_items["lyra"]
+                    triggered_lyra = lyra_dialogue.check_click(logic_mouse_pos)
+
                     for item in bedroom_items.values():
                         triggered_dialogue = item.check_click(logic_mouse_pos)
 
                         if triggered_dialogue:
                             dialogue.start(triggered_dialogue)
+                            if triggered:
+                                flower_state["interacted"] = True
+                            if triggered_lyra:
+                                lyra_state["pet"] = True
+
                             break
 
                 elif current_background == "kitchen":
@@ -172,8 +201,8 @@ def game():
                     audra_dialogue = neighbourhood_items["Audra"]
                     triggered = audra_dialogue.check_click(logic_mouse_pos)
 
-                    if audra_dialogue.hitbox.collidepoint((mouse_x, mouse_y)) and audra_state == True:
-                        audra_state = False
+                    if audra_dialogue.hitbox.collidepoint((mouse_x, mouse_y)) and audra_state["talked_to"] == False:
+                        audra_state["talked_to"] = True
                         dialogue.start(triggered)
 
                     if stop_sign.hitbox.collidepoint((mouse_x, mouse_y)):
@@ -202,9 +231,6 @@ def game():
                     elif roof.hitbox.collidepoint((mouse_x, mouse_y)):
                         dialogue.start(roof_dialogue)
                         CAMPUS_DIALOGUE["roof"]["go to roof"]["options"][0]["action"] = lambda : clicked("roof")
-
-                elif current_background == "roof":
-                    pass
         
         all_sprites.update(dt, dialogue.active)
         if current_background == "rooftop":
@@ -295,6 +321,7 @@ def game():
         fade.draw(canvas)
 
         if ending_state["text_active"]:
+
             ending_message = "Your Regrets:"
 
             text_surface = dialogue_font.render(
@@ -304,22 +331,24 @@ def game():
             )
 
             text_rect = text_surface.get_rect(
-                center=(GAME_WIDTH // 2, GAME_HEIGHT // 2)
+                center=(GAME_WIDTH // 2, 35)
             )
 
             canvas.blit(text_surface, text_rect)
 
-            prompt_surface = dialogue_font.render(
-                "Press SPACE to exit game",
-                True,
-                (180, 180, 180)
-            )
+            # Display the player's choices
+            for i, choice in enumerate(dialogue.choice_history):
 
-            prompt_rect = prompt_surface.get_rect(
-                center=(GAME_WIDTH // 2, GAME_HEIGHT - 25)
-            )
+                choice_surface = dialogue_font.render(
+                    "- " + choice,
+                    True,
+                    (255, 255, 255)
+                )
 
-            canvas.blit(prompt_surface, prompt_rect)
+                canvas.blit(
+                    choice_surface,
+                    (30, 60 + i * 15)
+                )
 
         scaled_canvas = pygame.transform.scale(
             canvas,(SCREEN_WIDTH, SCREEN_HEIGHT)

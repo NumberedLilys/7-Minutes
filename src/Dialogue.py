@@ -30,7 +30,7 @@ BEDROOM_DIALOGUES = {
         "leave": {
             "speaker": "Maynne",
             "text": "The flowers make the room smell fresh. There would be no reason to remove them.",
-            "options": [{"text": "Next", "next": None}]
+            "options": [{"text": "Next", "next": None, "ending_entry": "Didn't throw out flowers, letting Lyra die"}]
         }
     },
     "wall decor": {
@@ -45,12 +45,17 @@ BEDROOM_DIALOGUES = {
             "speaker": "Lyra",
             "text": "Meow!",
             "options": [{"text": "Pet", "next": "pet"},
-                        {"text": "Next", "next": None}]
+                        {"text": "Don't pet", "next": "no pet"}]
         },
         "pet": {
             "speaker": "Blank",
             "text": "You pet Lyra. The best part of every morning",
             "options": [{"text": "Next", "next": None}]
+        },
+        "no pet": {
+            "speaker": "Blank",
+            "text": "You leave without petting Lyra.",
+            "options": [{"text": "Next", "next": None, "ending_entry": "Did not pet Lyra"}]
         }
     },
     "calendar": {
@@ -130,7 +135,7 @@ NEIGHBOURHOOD_DIALOGUE = {
         "defensive": {
             "speaker": "Maynne",
             "text": "Why do you need to know? Get off my case, already. I was busy.",
-            "options": [{"text": "Continue", "next": "oh..."}]
+            "options": [{"text": "Continue", "next": "oh...", "ending_entry": "Was rude to Audra"}]
         },
         "okay!": {
             "speaker": "Audra",
@@ -169,7 +174,7 @@ CAMPUS_DIALOGUE = {
         "go to class": {
             "speaker": "Maynne",
             "text": "I should attend class.",
-            "options": [{"text": "Continue", "next": None}]
+            "options": [{"text": "Continue", "next": None, "ending_entry": "Didn't attend the study group"}]
         }
     },
     "study group": {
@@ -182,7 +187,7 @@ CAMPUS_DIALOGUE = {
         "go to study group": {
             "speaker": "Maynne",
             "text": "I should go to the study group.",
-            "options": [{"text": "Continue", "next": None}]
+            "options": [{"text": "Continue", "next": None, "ending_entry": "Didn't attend class"}]
         }
     },
     "roof": {
@@ -195,7 +200,7 @@ CAMPUS_DIALOGUE = {
         "go to roof": {
             "speaker": "Maynne",
             "text": "I will attend class and the study group tomorrow.",
-            "options": [{"text": "Continue", "next": None}]
+            "options": [{"text": "Continue", "next": None, "ending_entry": "Didn't attend class or study group"}]
         }
     }
 }
@@ -218,7 +223,7 @@ TIMED_DIALOGUE = {
             "ignore breakfast": {
                 "speaker": "Maynne",
                 "text": "...",
-                "options": [{"text": "Next", "next": None}]
+                "options": [{"text": "Next", "next": None, "ending_entry": "Ignored mom"}]
             }
     },
     "death_ending": {
