@@ -1,7 +1,10 @@
 import pathlib
 import pygame
+import sys
 
-ROOT_DIR = pathlib.Path(__file__).parent.parent
+ROOT_DIR = pathlib.Path(
+    getattr(sys, "_MEIPASS", pathlib.Path(__file__).parent.parent)
+)
 MAYNNE_DIR = ROOT_DIR / "assets" / "characters" / "Maynne"
 WALK_DIR = MAYNNE_DIR / "Walk"
 IDLE_DIR = MAYNNE_DIR / "Idle"

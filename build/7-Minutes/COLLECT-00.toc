@@ -1,0 +1,897 @@
+([('7-Minutes.exe',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\build\\7-Minutes\\7-Minutes.exe',
+   'EXECUTABLE'),
+  ('SDL2.dll',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\.venv\\Lib\\site-packages\\pygame\\SDL2.dll',
+   'BINARY'),
+  ('SDL2_image.dll',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\.venv\\Lib\\site-packages\\pygame\\SDL2_image.dll',
+   'BINARY'),
+  ('SDL2_mixer.dll',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\.venv\\Lib\\site-packages\\pygame\\SDL2_mixer.dll',
+   'BINARY'),
+  ('SDL2_ttf.dll',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\.venv\\Lib\\site-packages\\pygame\\SDL2_ttf.dll',
+   'BINARY'),
+  ('VCRUNTIME140.dll',
+   'C:\\Users\\Goober\\AppData\\Roaming\\uv\\python\\cpython-3.13-windows-x86_64-none\\VCRUNTIME140.dll',
+   'BINARY'),
+  ('VCRUNTIME140_1.dll',
+   'C:\\Users\\Goober\\AppData\\Roaming\\uv\\python\\cpython-3.13-windows-x86_64-none\\VCRUNTIME140_1.dll',
+   'BINARY'),
+  ('_bz2.pyd',
+   'C:\\Users\\Goober\\AppData\\Roaming\\uv\\python\\cpython-3.13-windows-x86_64-none\\DLLs\\_bz2.pyd',
+   'EXTENSION'),
+  ('_ctypes.pyd',
+   'C:\\Users\\Goober\\AppData\\Roaming\\uv\\python\\cpython-3.13-windows-x86_64-none\\DLLs\\_ctypes.pyd',
+   'EXTENSION'),
+  ('_decimal.pyd',
+   'C:\\Users\\Goober\\AppData\\Roaming\\uv\\python\\cpython-3.13-windows-x86_64-none\\DLLs\\_decimal.pyd',
+   'EXTENSION'),
+  ('_hashlib.pyd',
+   'C:\\Users\\Goober\\AppData\\Roaming\\uv\\python\\cpython-3.13-windows-x86_64-none\\DLLs\\_hashlib.pyd',
+   'EXTENSION'),
+  ('_lzma.pyd',
+   'C:\\Users\\Goober\\AppData\\Roaming\\uv\\python\\cpython-3.13-windows-x86_64-none\\DLLs\\_lzma.pyd',
+   'EXTENSION'),
+  ('_socket.pyd',
+   'C:\\Users\\Goober\\AppData\\Roaming\\uv\\python\\cpython-3.13-windows-x86_64-none\\DLLs\\_socket.pyd',
+   'EXTENSION'),
+  ('_wmi.pyd',
+   'C:\\Users\\Goober\\AppData\\Roaming\\uv\\python\\cpython-3.13-windows-x86_64-none\\DLLs\\_wmi.pyd',
+   'EXTENSION'),
+  ('api-ms-win-core-console-l1-1-0.dll',
+   'C:\\Program '
+   'Files\\Microsoft\\jdk-25.0.4.101-hotspot\\bin\\api-ms-win-core-console-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-datetime-l1-1-0.dll',
+   'C:\\Program '
+   'Files\\Microsoft\\jdk-25.0.4.101-hotspot\\bin\\api-ms-win-core-datetime-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-debug-l1-1-0.dll',
+   'C:\\Program '
+   'Files\\Microsoft\\jdk-25.0.4.101-hotspot\\bin\\api-ms-win-core-debug-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-errorhandling-l1-1-0.dll',
+   'C:\\Program '
+   'Files\\Microsoft\\jdk-25.0.4.101-hotspot\\bin\\api-ms-win-core-errorhandling-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-fibers-l1-1-0.dll',
+   'C:\\Program '
+   'Files\\Microsoft\\jdk-25.0.4.101-hotspot\\bin\\api-ms-win-core-fibers-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-file-l1-1-0.dll',
+   'C:\\Program '
+   'Files\\Microsoft\\jdk-25.0.4.101-hotspot\\bin\\api-ms-win-core-file-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-file-l1-2-0.dll',
+   'C:\\Program '
+   'Files\\Microsoft\\jdk-25.0.4.101-hotspot\\bin\\api-ms-win-core-file-l1-2-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-file-l2-1-0.dll',
+   'C:\\Program '
+   'Files\\Microsoft\\jdk-25.0.4.101-hotspot\\bin\\api-ms-win-core-file-l2-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-handle-l1-1-0.dll',
+   'C:\\Program '
+   'Files\\Microsoft\\jdk-25.0.4.101-hotspot\\bin\\api-ms-win-core-handle-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-heap-l1-1-0.dll',
+   'C:\\Program '
+   'Files\\Microsoft\\jdk-25.0.4.101-hotspot\\bin\\api-ms-win-core-heap-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-interlocked-l1-1-0.dll',
+   'C:\\Program '
+   'Files\\Microsoft\\jdk-25.0.4.101-hotspot\\bin\\api-ms-win-core-interlocked-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-libraryloader-l1-1-0.dll',
+   'C:\\Program '
+   'Files\\Microsoft\\jdk-25.0.4.101-hotspot\\bin\\api-ms-win-core-libraryloader-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-localization-l1-2-0.dll',
+   'C:\\Program '
+   'Files\\Microsoft\\jdk-25.0.4.101-hotspot\\bin\\api-ms-win-core-localization-l1-2-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-memory-l1-1-0.dll',
+   'C:\\Program '
+   'Files\\Microsoft\\jdk-25.0.4.101-hotspot\\bin\\api-ms-win-core-memory-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-namedpipe-l1-1-0.dll',
+   'C:\\Program '
+   'Files\\Microsoft\\jdk-25.0.4.101-hotspot\\bin\\api-ms-win-core-namedpipe-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-processenvironment-l1-1-0.dll',
+   'C:\\Program '
+   'Files\\Microsoft\\jdk-25.0.4.101-hotspot\\bin\\api-ms-win-core-processenvironment-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-processthreads-l1-1-0.dll',
+   'C:\\Program '
+   'Files\\Microsoft\\jdk-25.0.4.101-hotspot\\bin\\api-ms-win-core-processthreads-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-processthreads-l1-1-1.dll',
+   'C:\\Program '
+   'Files\\Microsoft\\jdk-25.0.4.101-hotspot\\bin\\api-ms-win-core-processthreads-l1-1-1.dll',
+   'BINARY'),
+  ('api-ms-win-core-profile-l1-1-0.dll',
+   'C:\\Program '
+   'Files\\Microsoft\\jdk-25.0.4.101-hotspot\\bin\\api-ms-win-core-profile-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-rtlsupport-l1-1-0.dll',
+   'C:\\Program '
+   'Files\\Microsoft\\jdk-25.0.4.101-hotspot\\bin\\api-ms-win-core-rtlsupport-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-string-l1-1-0.dll',
+   'C:\\Program '
+   'Files\\Microsoft\\jdk-25.0.4.101-hotspot\\bin\\api-ms-win-core-string-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-synch-l1-1-0.dll',
+   'C:\\Program '
+   'Files\\Microsoft\\jdk-25.0.4.101-hotspot\\bin\\api-ms-win-core-synch-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-synch-l1-2-0.dll',
+   'C:\\Program '
+   'Files\\Microsoft\\jdk-25.0.4.101-hotspot\\bin\\api-ms-win-core-synch-l1-2-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-sysinfo-l1-1-0.dll',
+   'C:\\Program '
+   'Files\\Microsoft\\jdk-25.0.4.101-hotspot\\bin\\api-ms-win-core-sysinfo-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-timezone-l1-1-0.dll',
+   'C:\\Program '
+   'Files\\Microsoft\\jdk-25.0.4.101-hotspot\\bin\\api-ms-win-core-timezone-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-util-l1-1-0.dll',
+   'C:\\Program '
+   'Files\\Microsoft\\jdk-25.0.4.101-hotspot\\bin\\api-ms-win-core-util-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-conio-l1-1-0.dll',
+   'C:\\Program '
+   'Files\\Microsoft\\jdk-25.0.4.101-hotspot\\bin\\api-ms-win-crt-conio-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-convert-l1-1-0.dll',
+   'C:\\Program '
+   'Files\\Microsoft\\jdk-25.0.4.101-hotspot\\bin\\api-ms-win-crt-convert-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-environment-l1-1-0.dll',
+   'C:\\Program '
+   'Files\\Microsoft\\jdk-25.0.4.101-hotspot\\bin\\api-ms-win-crt-environment-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-filesystem-l1-1-0.dll',
+   'C:\\Program '
+   'Files\\Microsoft\\jdk-25.0.4.101-hotspot\\bin\\api-ms-win-crt-filesystem-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-heap-l1-1-0.dll',
+   'C:\\Program '
+   'Files\\Microsoft\\jdk-25.0.4.101-hotspot\\bin\\api-ms-win-crt-heap-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-locale-l1-1-0.dll',
+   'C:\\Program '
+   'Files\\Microsoft\\jdk-25.0.4.101-hotspot\\bin\\api-ms-win-crt-locale-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-math-l1-1-0.dll',
+   'C:\\Program '
+   'Files\\Microsoft\\jdk-25.0.4.101-hotspot\\bin\\api-ms-win-crt-math-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-process-l1-1-0.dll',
+   'C:\\Program '
+   'Files\\Microsoft\\jdk-25.0.4.101-hotspot\\bin\\api-ms-win-crt-process-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-runtime-l1-1-0.dll',
+   'C:\\Program '
+   'Files\\Microsoft\\jdk-25.0.4.101-hotspot\\bin\\api-ms-win-crt-runtime-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-stdio-l1-1-0.dll',
+   'C:\\Program '
+   'Files\\Microsoft\\jdk-25.0.4.101-hotspot\\bin\\api-ms-win-crt-stdio-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-string-l1-1-0.dll',
+   'C:\\Program '
+   'Files\\Microsoft\\jdk-25.0.4.101-hotspot\\bin\\api-ms-win-crt-string-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-time-l1-1-0.dll',
+   'C:\\Program '
+   'Files\\Microsoft\\jdk-25.0.4.101-hotspot\\bin\\api-ms-win-crt-time-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-utility-l1-1-0.dll',
+   'C:\\Program '
+   'Files\\Microsoft\\jdk-25.0.4.101-hotspot\\bin\\api-ms-win-crt-utility-l1-1-0.dll',
+   'BINARY'),
+  ('assets\\audio\\Click and textbox.flac',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\audio\\Click and textbox.flac',
+   'DATA'),
+  ('assets\\audio\\Credits',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\audio\\Credits',
+   'DATA'),
+  ('assets\\audio\\Death.wav',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\audio\\Death.wav',
+   'DATA'),
+  ('assets\\audio\\Hallway.wav',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\audio\\Hallway.wav',
+   'DATA'),
+  ('assets\\audio\\Inside bus.wav',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\audio\\Inside bus.wav',
+   'DATA'),
+  ('assets\\audio\\Lyra noises.wav',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\audio\\Lyra noises.wav',
+   'DATA'),
+  ('assets\\audio\\Morning ambience.wav',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\audio\\Morning ambience.wav',
+   'DATA'),
+  ('assets\\audio\\Outdoor ambience.wav',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\audio\\Outdoor ambience.wav',
+   'DATA'),
+  ('assets\\audio\\Quiet study.wav',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\audio\\Quiet study.wav',
+   'DATA'),
+  ('assets\\audio\\Start screen and loading.mp3',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\audio\\Start screen and loading.mp3',
+   'DATA'),
+  ('assets\\characters\\Audra\\AudraIdle_0001.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\characters\\Audra\\AudraIdle_0001.png',
+   'DATA'),
+  ('assets\\characters\\Audra\\AudraIdle_0002.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\characters\\Audra\\AudraIdle_0002.png',
+   'DATA'),
+  ('assets\\characters\\Audra\\AudraIdle_0003.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\characters\\Audra\\AudraIdle_0003.png',
+   'DATA'),
+  ('assets\\characters\\Audra\\AudraIdle_0004.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\characters\\Audra\\AudraIdle_0004.png',
+   'DATA'),
+  ('assets\\characters\\Audra\\AudraIdle_0005.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\characters\\Audra\\AudraIdle_0005.png',
+   'DATA'),
+  ('assets\\characters\\Audra\\AudraIdle_0006.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\characters\\Audra\\AudraIdle_0006.png',
+   'DATA'),
+  ('assets\\characters\\Audra\\AudraIdle_0007.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\characters\\Audra\\AudraIdle_0007.png',
+   'DATA'),
+  ('assets\\characters\\Audra\\AudraIdle_0008.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\characters\\Audra\\AudraIdle_0008.png',
+   'DATA'),
+  ('assets\\characters\\Audra\\AudraIdle_0009.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\characters\\Audra\\AudraIdle_0009.png',
+   'DATA'),
+  ('assets\\characters\\Audra\\AudraIdle_0010.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\characters\\Audra\\AudraIdle_0010.png',
+   'DATA'),
+  ('assets\\characters\\Death\\ReaperIdle_0001.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\characters\\Death\\ReaperIdle_0001.png',
+   'DATA'),
+  ('assets\\characters\\Death\\ReaperIdle_0002.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\characters\\Death\\ReaperIdle_0002.png',
+   'DATA'),
+  ('assets\\characters\\Death\\ReaperIdle_0003.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\characters\\Death\\ReaperIdle_0003.png',
+   'DATA'),
+  ('assets\\characters\\Death\\ReaperIdle_0004.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\characters\\Death\\ReaperIdle_0004.png',
+   'DATA'),
+  ('assets\\characters\\Death\\ReaperIdle_0005.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\characters\\Death\\ReaperIdle_0005.png',
+   'DATA'),
+  ('assets\\characters\\Lyra\\LyraIdle_0001.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\characters\\Lyra\\LyraIdle_0001.png',
+   'DATA'),
+  ('assets\\characters\\Lyra\\LyraIdle_0002.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\characters\\Lyra\\LyraIdle_0002.png',
+   'DATA'),
+  ('assets\\characters\\Lyra\\LyraIdle_0003.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\characters\\Lyra\\LyraIdle_0003.png',
+   'DATA'),
+  ('assets\\characters\\Lyra\\LyraIdle_0004.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\characters\\Lyra\\LyraIdle_0004.png',
+   'DATA'),
+  ('assets\\characters\\Lyra\\LyraIdle_0005.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\characters\\Lyra\\LyraIdle_0005.png',
+   'DATA'),
+  ('assets\\characters\\Lyra\\LyraIdle_0006.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\characters\\Lyra\\LyraIdle_0006.png',
+   'DATA'),
+  ('assets\\characters\\Lyra\\LyraIdle_0007.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\characters\\Lyra\\LyraIdle_0007.png',
+   'DATA'),
+  ('assets\\characters\\Lyra\\LyraIdle_0008.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\characters\\Lyra\\LyraIdle_0008.png',
+   'DATA'),
+  ('assets\\characters\\Lyra\\LyraIdle_0009.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\characters\\Lyra\\LyraIdle_0009.png',
+   'DATA'),
+  ('assets\\characters\\Lyra\\LyraIdle_0010.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\characters\\Lyra\\LyraIdle_0010.png',
+   'DATA'),
+  ('assets\\characters\\Lyra\\LyraIdle_0011.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\characters\\Lyra\\LyraIdle_0011.png',
+   'DATA'),
+  ('assets\\characters\\Lyra\\LyraIdle_0012.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\characters\\Lyra\\LyraIdle_0012.png',
+   'DATA'),
+  ('assets\\characters\\Maynne\\Idle\\MaynneIdle_0001.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\characters\\Maynne\\Idle\\MaynneIdle_0001.png',
+   'DATA'),
+  ('assets\\characters\\Maynne\\Idle\\MaynneIdle_0002.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\characters\\Maynne\\Idle\\MaynneIdle_0002.png',
+   'DATA'),
+  ('assets\\characters\\Maynne\\Idle\\MaynneIdle_0003.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\characters\\Maynne\\Idle\\MaynneIdle_0003.png',
+   'DATA'),
+  ('assets\\characters\\Maynne\\Idle\\MaynneIdle_0004.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\characters\\Maynne\\Idle\\MaynneIdle_0004.png',
+   'DATA'),
+  ('assets\\characters\\Maynne\\Idle\\MaynneIdle_0005.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\characters\\Maynne\\Idle\\MaynneIdle_0005.png',
+   'DATA'),
+  ('assets\\characters\\Maynne\\Idle\\MaynneIdle_0006.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\characters\\Maynne\\Idle\\MaynneIdle_0006.png',
+   'DATA'),
+  ('assets\\characters\\Maynne\\Idle\\MaynneIdle_0007.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\characters\\Maynne\\Idle\\MaynneIdle_0007.png',
+   'DATA'),
+  ('assets\\characters\\Maynne\\Idle\\MaynneIdle_0008.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\characters\\Maynne\\Idle\\MaynneIdle_0008.png',
+   'DATA'),
+  ('assets\\characters\\Maynne\\Idle\\MaynneIdle_0009.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\characters\\Maynne\\Idle\\MaynneIdle_0009.png',
+   'DATA'),
+  ('assets\\characters\\Maynne\\Idle\\MaynneIdle_0010.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\characters\\Maynne\\Idle\\MaynneIdle_0010.png',
+   'DATA'),
+  ('assets\\characters\\Maynne\\Run\\MaynneRun_0001.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\characters\\Maynne\\Run\\MaynneRun_0001.png',
+   'DATA'),
+  ('assets\\characters\\Maynne\\Run\\MaynneRun_0002.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\characters\\Maynne\\Run\\MaynneRun_0002.png',
+   'DATA'),
+  ('assets\\characters\\Maynne\\Run\\MaynneRun_0003.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\characters\\Maynne\\Run\\MaynneRun_0003.png',
+   'DATA'),
+  ('assets\\characters\\Maynne\\Run\\MaynneRun_0004.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\characters\\Maynne\\Run\\MaynneRun_0004.png',
+   'DATA'),
+  ('assets\\characters\\Maynne\\Run\\MaynneRun_0005.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\characters\\Maynne\\Run\\MaynneRun_0005.png',
+   'DATA'),
+  ('assets\\characters\\Maynne\\Run\\MaynneRun_0006.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\characters\\Maynne\\Run\\MaynneRun_0006.png',
+   'DATA'),
+  ('assets\\characters\\Maynne\\Run\\MaynneRun_0007.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\characters\\Maynne\\Run\\MaynneRun_0007.png',
+   'DATA'),
+  ('assets\\characters\\Maynne\\Run\\MaynneRun_0008.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\characters\\Maynne\\Run\\MaynneRun_0008.png',
+   'DATA'),
+  ('assets\\characters\\Maynne\\Run\\MaynneRun_0009.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\characters\\Maynne\\Run\\MaynneRun_0009.png',
+   'DATA'),
+  ('assets\\characters\\Maynne\\Run\\MaynneRun_0010.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\characters\\Maynne\\Run\\MaynneRun_0010.png',
+   'DATA'),
+  ('assets\\characters\\Maynne\\Walk\\MaynneWalk_0001.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\characters\\Maynne\\Walk\\MaynneWalk_0001.png',
+   'DATA'),
+  ('assets\\characters\\Maynne\\Walk\\MaynneWalk_0002.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\characters\\Maynne\\Walk\\MaynneWalk_0002.png',
+   'DATA'),
+  ('assets\\characters\\Maynne\\Walk\\MaynneWalk_0003.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\characters\\Maynne\\Walk\\MaynneWalk_0003.png',
+   'DATA'),
+  ('assets\\characters\\Maynne\\Walk\\MaynneWalk_0004.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\characters\\Maynne\\Walk\\MaynneWalk_0004.png',
+   'DATA'),
+  ('assets\\characters\\Maynne\\Walk\\MaynneWalk_0005.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\characters\\Maynne\\Walk\\MaynneWalk_0005.png',
+   'DATA'),
+  ('assets\\characters\\Maynne\\Walk\\MaynneWalk_0006.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\characters\\Maynne\\Walk\\MaynneWalk_0006.png',
+   'DATA'),
+  ('assets\\characters\\Maynne\\Walk\\MaynneWalk_0007.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\characters\\Maynne\\Walk\\MaynneWalk_0007.png',
+   'DATA'),
+  ('assets\\characters\\Maynne\\Walk\\MaynneWalk_0008.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\characters\\Maynne\\Walk\\MaynneWalk_0008.png',
+   'DATA'),
+  ('assets\\characters\\Maynne\\Walk\\MaynneWalk_0009.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\characters\\Maynne\\Walk\\MaynneWalk_0009.png',
+   'DATA'),
+  ('assets\\characters\\Maynne\\Walk\\MaynneWalk_0010.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\characters\\Maynne\\Walk\\MaynneWalk_0010.png',
+   'DATA'),
+  ('assets\\characters\\grim_reaper_temp.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\characters\\grim_reaper_temp.png',
+   'DATA'),
+  ('assets\\environments\\Bedroom\\Background.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\environments\\Bedroom\\Background.png',
+   'DATA'),
+  ('assets\\environments\\Bedroom\\Bed.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\environments\\Bedroom\\Bed.png',
+   'DATA'),
+  ('assets\\environments\\Bedroom\\Bookshelf.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\environments\\Bedroom\\Bookshelf.png',
+   'DATA'),
+  ('assets\\environments\\Bedroom\\Dresser.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\environments\\Bedroom\\Dresser.png',
+   'DATA'),
+  ('assets\\environments\\Bedroom\\Objects\\Calendar.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\environments\\Bedroom\\Objects\\Calendar.png',
+   'DATA'),
+  ('assets\\environments\\Bedroom\\Objects\\Lilies.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\environments\\Bedroom\\Objects\\Lilies.png',
+   'DATA'),
+  ('assets\\environments\\Bedroom\\Objects\\WallDecor.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\environments\\Bedroom\\Objects\\WallDecor.png',
+   'DATA'),
+  ('assets\\environments\\Campus\\Background.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\environments\\Campus\\Background.png',
+   'DATA'),
+  ('assets\\environments\\Campus\\Bench.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\environments\\Campus\\Bench.png',
+   'DATA'),
+  ('assets\\environments\\Campus\\CampusBack.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\environments\\Campus\\CampusBack.png',
+   'DATA'),
+  ('assets\\environments\\Campus\\ClassroomDoor.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\environments\\Campus\\ClassroomDoor.png',
+   'DATA'),
+  ('assets\\environments\\Campus\\FireExitDoor.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\environments\\Campus\\FireExitDoor.png',
+   'DATA'),
+  ('assets\\environments\\Campus\\SchoolPlaque.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\environments\\Campus\\SchoolPlaque.png',
+   'DATA'),
+  ('assets\\environments\\Campus\\StudyDoor.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\environments\\Campus\\StudyDoor.png',
+   'DATA'),
+  ('assets\\environments\\ClassRoom.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\environments\\ClassRoom.png',
+   'DATA'),
+  ('assets\\environments\\Kitchen\\Background.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\environments\\Kitchen\\Background.png',
+   'DATA'),
+  ('assets\\environments\\Kitchen\\Bench.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\environments\\Kitchen\\Bench.png',
+   'DATA'),
+  ('assets\\environments\\Kitchen\\Breakfast.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\environments\\Kitchen\\Breakfast.png',
+   'DATA'),
+  ('assets\\environments\\Kitchen\\Cabinets.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\environments\\Kitchen\\Cabinets.png',
+   'DATA'),
+  ('assets\\environments\\Kitchen\\Calendar.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\environments\\Kitchen\\Calendar.png',
+   'DATA'),
+  ('assets\\environments\\Kitchen\\CoatRack.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\environments\\Kitchen\\CoatRack.png',
+   'DATA'),
+  ('assets\\environments\\Kitchen\\Counter.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\environments\\Kitchen\\Counter.png',
+   'DATA'),
+  ('assets\\environments\\Kitchen\\Fridge.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\environments\\Kitchen\\Fridge.png',
+   'DATA'),
+  ('assets\\environments\\Kitchen\\MomAndTable.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\environments\\Kitchen\\MomAndTable.png',
+   'DATA'),
+  ('assets\\environments\\Loading_Screen.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\environments\\Loading_Screen.png',
+   'DATA'),
+  ('assets\\environments\\Neighbourhood\\BusStop.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\environments\\Neighbourhood\\BusStop.png',
+   'DATA'),
+  ('assets\\environments\\Neighbourhood\\Neighbourhood.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\environments\\Neighbourhood\\Neighbourhood.png',
+   'DATA'),
+  ('assets\\environments\\Rooftop.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\environments\\Rooftop.png',
+   'DATA'),
+  ('assets\\environments\\StartScreen\\Buttons\\ExitClick.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\environments\\StartScreen\\Buttons\\ExitClick.png',
+   'DATA'),
+  ('assets\\environments\\StartScreen\\Buttons\\ExitHover.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\environments\\StartScreen\\Buttons\\ExitHover.png',
+   'DATA'),
+  ('assets\\environments\\StartScreen\\Buttons\\ExitRegular.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\environments\\StartScreen\\Buttons\\ExitRegular.png',
+   'DATA'),
+  ('assets\\environments\\StartScreen\\Buttons\\StartClick.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\environments\\StartScreen\\Buttons\\StartClick.png',
+   'DATA'),
+  ('assets\\environments\\StartScreen\\Buttons\\StartHover.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\environments\\StartScreen\\Buttons\\StartHover.png',
+   'DATA'),
+  ('assets\\environments\\StartScreen\\Buttons\\StartRegular.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\environments\\StartScreen\\Buttons\\StartRegular.png',
+   'DATA'),
+  ('assets\\environments\\StartScreen\\Splash_art.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\environments\\StartScreen\\Splash_art.png',
+   'DATA'),
+  ('assets\\environments\\StudyRoom.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\environments\\StudyRoom.png',
+   'DATA'),
+  ('assets\\fonts\\LICENSE',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\fonts\\LICENSE',
+   'DATA'),
+  ('assets\\fonts\\fusion-pixel-10px-monospaced-kr-latin-400-normal.ttf',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\fonts\\fusion-pixel-10px-monospaced-kr-latin-400-normal.ttf',
+   'DATA'),
+  ('assets\\ui\\dialogue\\NamePlates\\Audra.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\ui\\dialogue\\NamePlates\\Audra.png',
+   'DATA'),
+  ('assets\\ui\\dialogue\\NamePlates\\Blank.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\ui\\dialogue\\NamePlates\\Blank.png',
+   'DATA'),
+  ('assets\\ui\\dialogue\\NamePlates\\Death.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\ui\\dialogue\\NamePlates\\Death.png',
+   'DATA'),
+  ('assets\\ui\\dialogue\\NamePlates\\Lyra.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\ui\\dialogue\\NamePlates\\Lyra.png',
+   'DATA'),
+  ('assets\\ui\\dialogue\\NamePlates\\Maynne.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\ui\\dialogue\\NamePlates\\Maynne.png',
+   'DATA'),
+  ('assets\\ui\\dialogue\\NamePlates\\Mom.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\ui\\dialogue\\NamePlates\\Mom.png',
+   'DATA'),
+  ('assets\\ui\\dialogue\\blankText.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\ui\\dialogue\\blankText.png',
+   'DATA'),
+  ('assets\\ui\\dialogue\\continueArrow.png',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\assets\\ui\\dialogue\\continueArrow.png',
+   'DATA'),
+  ('base_library.zip',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\build\\7-Minutes\\base_library.zip',
+   'DATA'),
+  ('freetype.dll',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\.venv\\Lib\\site-packages\\pygame\\freetype.dll',
+   'BINARY'),
+  ('libcrypto-3-x64.dll',
+   'C:\\Users\\Goober\\AppData\\Roaming\\uv\\python\\cpython-3.13-windows-x86_64-none\\DLLs\\libcrypto-3-x64.dll',
+   'BINARY'),
+  ('libffi-8.dll',
+   'C:\\Users\\Goober\\AppData\\Roaming\\uv\\python\\cpython-3.13-windows-x86_64-none\\DLLs\\libffi-8.dll',
+   'BINARY'),
+  ('libjpeg-62.dll',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\.venv\\Lib\\site-packages\\pygame\\libjpeg-62.dll',
+   'BINARY'),
+  ('libogg-0.dll',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\.venv\\Lib\\site-packages\\pygame\\libogg-0.dll',
+   'BINARY'),
+  ('libopus-0.dll',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\.venv\\Lib\\site-packages\\pygame\\libopus-0.dll',
+   'BINARY'),
+  ('libopusfile-0.dll',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\.venv\\Lib\\site-packages\\pygame\\libopusfile-0.dll',
+   'BINARY'),
+  ('libpng16-16.dll',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\.venv\\Lib\\site-packages\\pygame\\libpng16-16.dll',
+   'BINARY'),
+  ('libtiff-5.dll',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\.venv\\Lib\\site-packages\\pygame\\libtiff-5.dll',
+   'BINARY'),
+  ('libwavpack-1.dll',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\.venv\\Lib\\site-packages\\pygame\\libwavpack-1.dll',
+   'BINARY'),
+  ('libwebp-7.dll',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\.venv\\Lib\\site-packages\\pygame\\libwebp-7.dll',
+   'BINARY'),
+  ('libwebpdemux-2.dll',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\.venv\\Lib\\site-packages\\pygame\\libwebpdemux-2.dll',
+   'BINARY'),
+  ('libxmp.dll',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\.venv\\Lib\\site-packages\\pygame\\libxmp.dll',
+   'BINARY'),
+  ('portmidi.dll',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\.venv\\Lib\\site-packages\\pygame\\portmidi.dll',
+   'BINARY'),
+  ('pygame\\SDL2.dll',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\.venv\\Lib\\site-packages\\pygame\\SDL2.dll',
+   'BINARY'),
+  ('pygame\\SDL2_image.dll',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\.venv\\Lib\\site-packages\\pygame\\SDL2_image.dll',
+   'BINARY'),
+  ('pygame\\SDL2_mixer.dll',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\.venv\\Lib\\site-packages\\pygame\\SDL2_mixer.dll',
+   'BINARY'),
+  ('pygame\\SDL2_ttf.dll',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\.venv\\Lib\\site-packages\\pygame\\SDL2_ttf.dll',
+   'BINARY'),
+  ('pygame\\_freetype.cp313-win_amd64.pyd',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\.venv\\Lib\\site-packages\\pygame\\_freetype.cp313-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\_sdl2\\audio.cp313-win_amd64.pyd',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\.venv\\Lib\\site-packages\\pygame\\_sdl2\\audio.cp313-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\_sdl2\\sdl2.cp313-win_amd64.pyd',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\.venv\\Lib\\site-packages\\pygame\\_sdl2\\sdl2.cp313-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\_sdl2\\video.cp313-win_amd64.pyd',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\.venv\\Lib\\site-packages\\pygame\\_sdl2\\video.cp313-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\base.cp313-win_amd64.pyd',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\.venv\\Lib\\site-packages\\pygame\\base.cp313-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\bufferproxy.cp313-win_amd64.pyd',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\.venv\\Lib\\site-packages\\pygame\\bufferproxy.cp313-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\color.cp313-win_amd64.pyd',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\.venv\\Lib\\site-packages\\pygame\\color.cp313-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\constants.cp313-win_amd64.pyd',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\.venv\\Lib\\site-packages\\pygame\\constants.cp313-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\display.cp313-win_amd64.pyd',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\.venv\\Lib\\site-packages\\pygame\\display.cp313-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\draw.cp313-win_amd64.pyd',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\.venv\\Lib\\site-packages\\pygame\\draw.cp313-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\event.cp313-win_amd64.pyd',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\.venv\\Lib\\site-packages\\pygame\\event.cp313-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\font.cp313-win_amd64.pyd',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\.venv\\Lib\\site-packages\\pygame\\font.cp313-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\freesansbold.ttf',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\.venv\\Lib\\site-packages\\pygame\\freesansbold.ttf',
+   'DATA'),
+  ('pygame\\freetype.dll',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\.venv\\Lib\\site-packages\\pygame\\freetype.dll',
+   'BINARY'),
+  ('pygame\\image.cp313-win_amd64.pyd',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\.venv\\Lib\\site-packages\\pygame\\image.cp313-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\imageext.cp313-win_amd64.pyd',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\.venv\\Lib\\site-packages\\pygame\\imageext.cp313-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\joystick.cp313-win_amd64.pyd',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\.venv\\Lib\\site-packages\\pygame\\joystick.cp313-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\key.cp313-win_amd64.pyd',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\.venv\\Lib\\site-packages\\pygame\\key.cp313-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\libogg-0.dll',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\.venv\\Lib\\site-packages\\pygame\\libogg-0.dll',
+   'BINARY'),
+  ('pygame\\libopus-0.dll',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\.venv\\Lib\\site-packages\\pygame\\libopus-0.dll',
+   'BINARY'),
+  ('pygame\\libwebp-7.dll',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\.venv\\Lib\\site-packages\\pygame\\libwebp-7.dll',
+   'BINARY'),
+  ('pygame\\mask.cp313-win_amd64.pyd',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\.venv\\Lib\\site-packages\\pygame\\mask.cp313-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\math.cp313-win_amd64.pyd',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\.venv\\Lib\\site-packages\\pygame\\math.cp313-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\mixer.cp313-win_amd64.pyd',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\.venv\\Lib\\site-packages\\pygame\\mixer.cp313-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\mixer_music.cp313-win_amd64.pyd',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\.venv\\Lib\\site-packages\\pygame\\mixer_music.cp313-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\mouse.cp313-win_amd64.pyd',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\.venv\\Lib\\site-packages\\pygame\\mouse.cp313-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\pixelarray.cp313-win_amd64.pyd',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\.venv\\Lib\\site-packages\\pygame\\pixelarray.cp313-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\pixelcopy.cp313-win_amd64.pyd',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\.venv\\Lib\\site-packages\\pygame\\pixelcopy.cp313-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\pygame_icon.bmp',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\.venv\\Lib\\site-packages\\pygame\\pygame_icon.bmp',
+   'DATA'),
+  ('pygame\\rect.cp313-win_amd64.pyd',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\.venv\\Lib\\site-packages\\pygame\\rect.cp313-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\rwobject.cp313-win_amd64.pyd',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\.venv\\Lib\\site-packages\\pygame\\rwobject.cp313-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\scrap.cp313-win_amd64.pyd',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\.venv\\Lib\\site-packages\\pygame\\scrap.cp313-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\surface.cp313-win_amd64.pyd',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\.venv\\Lib\\site-packages\\pygame\\surface.cp313-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\surflock.cp313-win_amd64.pyd',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\.venv\\Lib\\site-packages\\pygame\\surflock.cp313-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\system.cp313-win_amd64.pyd',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\.venv\\Lib\\site-packages\\pygame\\system.cp313-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\time.cp313-win_amd64.pyd',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\.venv\\Lib\\site-packages\\pygame\\time.cp313-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\transform.cp313-win_amd64.pyd',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\.venv\\Lib\\site-packages\\pygame\\transform.cp313-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\window.cp313-win_amd64.pyd',
+   'C:\\Users\\Goober\\Documents\\School\\Second Year '
+   'Classes\\7-Minutes\\.venv\\Lib\\site-packages\\pygame\\window.cp313-win_amd64.pyd',
+   'EXTENSION'),
+  ('python313.dll',
+   'C:\\Users\\Goober\\AppData\\Roaming\\uv\\python\\cpython-3.13-windows-x86_64-none\\python313.dll',
+   'BINARY'),
+  ('select.pyd',
+   'C:\\Users\\Goober\\AppData\\Roaming\\uv\\python\\cpython-3.13-windows-x86_64-none\\DLLs\\select.pyd',
+   'EXTENSION'),
+  ('ucrtbase.dll',
+   'C:\\Program Files\\Microsoft\\jdk-25.0.4.101-hotspot\\bin\\ucrtbase.dll',
+   'BINARY'),
+  ('unicodedata.pyd',
+   'C:\\Users\\Goober\\AppData\\Roaming\\uv\\python\\cpython-3.13-windows-x86_64-none\\DLLs\\unicodedata.pyd',
+   'EXTENSION')],)
