@@ -15,8 +15,8 @@ def setup_timed_events(timer, dialogue, get_current_room, ending_state):
         callback=first_event
     )
 
-    # timer.add_event(
-    #     minutes=7,
-    #     seconds=0,
-    #     callback=second_event
-    # )
+    timer.add_event(
+        minutes=7,
+        seconds=0,
+        callback=second_event
+    )
