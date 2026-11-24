@@ -115,6 +115,7 @@ def game():
         ):
             ending_state["death_dialogue_started"] = True
             ending_state["image_active"] = True
+            my_character.facing = "right"
             dialogue.queue(TIMED_DIALOGUE["death_ending"])
 
         clicked_background = None
@@ -232,7 +233,11 @@ def game():
                         dialogue.start(roof_dialogue)
                         CAMPUS_DIALOGUE["roof"]["go to roof"]["options"][0]["action"] = lambda : clicked("rooftop")
         
-        all_sprites.update(dt, dialogue.active)
+        all_sprites.update(
+            dt,
+            #pausing animation when dialogue is active or the death sequence is
+            dialogue.active or ending_state["death_dialogue_started"],
+        )
         if current_background == "rooftop":
             if (
                 roof_trigger.colliderect(my_character.rect)
