@@ -7,8 +7,9 @@
 The game explores themes of relationships, time, missed opportunities, and regret. It does so through conversations, player choices, and character interactions.
 
 **How to Play:**
+
 Hosted on Itch.io, simply download and extract the files, and press play on the 7-Minutes application file!
- 
+
 Play here: https://reighnstudio.itch.io/7-minutes
 
 **Story**
