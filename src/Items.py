@@ -157,3 +157,14 @@ def create_campus_items():
     }
 
     return items
+
+def create_roof_items(animations, x):
+    items = {
+        "death": Character(
+            "death",
+            animations["death_idle"],
+            x, 90 # something, 110
+        )
+    }
+    return items
+    

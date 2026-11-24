@@ -38,6 +38,18 @@ def create_backgrounds(screen_width, screen_height):
             screen_width,
             screen_height,
             left_target="neighbourhood"
+        ),
+        "class": Background(
+            load_image("ClassRoom.png", None, BACKGROUND_DIR),
+            screen_width,
+            screen_height,
+            right_target="roof"
+        ),
+        "studyroom": Background(
+            load_image("StudyRoom.png", None, BACKGROUND_DIR),
+            screen_width,
+            screen_height,
+            right_target="roof"
         )
     }
 

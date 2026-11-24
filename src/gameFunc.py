@@ -3,9 +3,9 @@ import sys
 from Player import Player
 from Load import load_animations, ROOT_DIR, load_image
 from Backgrounds import create_backgrounds, create_buttons
-from Items import create_bedroom_items, create_kitchen_items, create_neighbourhood_items, create_campus_items
+from Items import create_bedroom_items, create_kitchen_items, create_neighbourhood_items, create_campus_items, create_roof_items
 from Timer import GameTimer
-from Dialogue import BEDROOM_DIALOGUES, TIMED_DIALOGUE, NEIGHBOURHOOD_DIALOGUE, KITCHEN_DIALOGUE
+from Dialogue import BEDROOM_DIALOGUES, TIMED_DIALOGUE, NEIGHBOURHOOD_DIALOGUE, KITCHEN_DIALOGUE, CAMPUS_DIALOGUE
 from timedEvents import setup_timed_events
 from Audio import audio
 from Fade import Fade
@@ -38,6 +38,7 @@ dialogue = DialogueManager(dialogue_font, box_image, Nameplates, SCALE)
 pygame.display.set_caption('7-Minutes')
 
 animations = load_animations((64, 64)) #changed to accurate dimensions
+death_animations = load_animations((85, 85))
 
 backgrounds = create_backgrounds(GAME_WIDTH, GAME_HEIGHT)
 # current_background = "opening_screen"
@@ -46,6 +47,7 @@ bedroom_items = create_bedroom_items(animations)
 kitchen_items = create_kitchen_items()
 neighbourhood_items = create_neighbourhood_items()
 campus_items = create_campus_items()
+roof_items = create_roof_items(death_animations, MAYNNE_X + 75)
 
 BEDROOM_DIALOGUES["flowers"]["start"]["options"][0]["action"] = bedroom_items["flowers"].remove
 KITCHEN_DIALOGUE["breakfast"]["start"]["options"][0]["action"] = kitchen_items["breakfast"].remove
@@ -55,13 +57,6 @@ my_character = Player(animations, MAYNNE_X, MAYNNE_Y, backgrounds["bedroom"].wor
 all_sprites = pygame.sprite.Group()
 all_sprites.add(my_character)
 END_DIR = ROOT_DIR / "assets" / "characters"
-dialogue_images = {
-    "death_ending": load_image(
-        "grim_reaper_temp.png",
-        (80, 80),
-        END_DIR
-    )
-}
 
 def game():
     current_background = "bedroom"
@@ -91,15 +86,15 @@ def game():
         dt = clock.tick(60)
         timer.update(dt)
         clicked_background = None
-        def clicked():
+
+        def clicked(back): # CHANGE TO WORK WITH ANY BACKGROUND CHANGE???
             nonlocal clicked_background
-            clicked_background = "campus"
+            clicked_background = back
 
         fade.update(dt)
         if fade.finished and not ending_state["text_active"]:
             ending_state["text_active"] = True
             ending_state["waiting_for_input"] = True
-        clicked_background = None
 
         audio.play_ambience(current_background)
 
@@ -143,17 +138,6 @@ def game():
                             dialogue.start(triggered_dialogue)
                             break
 
-                elif current_background == "neighbourhood":
-                    camera_x = backgrounds[current_background].camera_x
-                    mouse_x = event.pos[0] / SCALE + camera_x
-                    mouse_y = event.pos[1] / SCALE
-                    stop_sign = neighbourhood_items["stop_sign"]
-                    triggered_dialogue = neighbourhood_items["stop_sign"].check_click(logic_mouse_pos)
-
-                    if stop_sign.hitbox.collidepoint((mouse_x, mouse_y)):
-                        dialogue.start(triggered_dialogue)
-                        NEIGHBOURHOOD_DIALOGUE["bus stop"]["go to school"]["options"][0]["action"] = clicked
-
                 elif current_background == "kitchen":
                     camera_x = backgrounds[current_background].camera_x
 
@@ -163,6 +147,40 @@ def game():
                         if triggered_dialogue:
                             dialogue.start(triggered_dialogue)
                             break
+
+                elif current_background == "neighbourhood":
+                    camera_x = backgrounds[current_background].camera_x
+                    mouse_x = event.pos[0] / SCALE + camera_x
+                    mouse_y = event.pos[1] / SCALE
+                    stop_sign = neighbourhood_items["stop_sign"]
+                    triggered_dialogue = stop_sign.check_click(logic_mouse_pos)
+
+                    if stop_sign.hitbox.collidepoint((mouse_x, mouse_y)):
+                        dialogue.start(triggered_dialogue)
+                        NEIGHBOURHOOD_DIALOGUE["bus stop"]["go to school"]["options"][0]["action"] = clicked
+
+                elif current_background == "campus":
+                    camera_x = backgrounds[current_background].camera_x
+                    mouse_x = event.pos[0] / SCALE + camera_x
+                    mouse_y = event.pos[1] / SCALE
+                    classroom = campus_items["classroom_door"]
+                    studyroom = campus_items["Studyroom_Door"]
+                    roof = campus_items["FireExit_Door"]
+                    classroom_dialogue = classroom.check_click(logic_mouse_pos)
+                    studyroom_dialogue = studyroom.check_click(logic_mouse_pos)
+                    roof_dialogue = roof.check_click(logic_mouse_pos)
+
+                    if classroom.hitbox.collidepoint((mouse_x, mouse_y)):
+                        dialogue.start(classroom_dialogue)
+                        CAMPUS_DIALOGUE["classroom"]["go to class"]["options"][0]["action"] = clicked("class")
+
+                    elif studyroom.hitbox.collidepoint((mouse_x, mouse_y)):
+                        dialogue.start(studyroom_dialogue)
+                        CAMPUS_DIALOGUE["study group"]["go to study group"]["options"][0]["action"] = clicked
+
+                    elif roof.hitbox.collidepoint((mouse_x, mouse_y)):
+                        dialogue.start(roof_dialogue)
+                        CAMPUS_DIALOGUE["roof"]["go to roof"]["options"][0]["action"] = clicked
         
         all_sprites.update(dt, dialogue.active)
 
@@ -175,7 +193,6 @@ def game():
         # #drawing room objects
         if current_background == "bedroom":
             bedroom_items["lyra"].update(dt)
-            camera_x = backgrounds[current_background].camera_x
             for item in bedroom_items.values():
                 item.draw(canvas, camera_x)
                 
@@ -239,8 +256,8 @@ def game():
 
         # ========== canvas ==========
         if ending_state["image_active"]:
-            image = dialogue_images["death_ending"]
-            canvas.blit(image, (200, 80))
+            roof_items["death"].update(dt)
+            roof_items["death"].draw(canvas)
 
         dialogue.draw(canvas)   
         fade.draw(canvas)
