@@ -1,6 +1,6 @@
 from Background import Background
-from Load import load_image, BACKGROUND_DIR, START_DIR, BUTTON_DIR, BEDROOM_DIR,KITCHEN_DIR
-
+from Load import load_image, BACKGROUND_DIR, START_DIR, BUTTON_DIR, BEDROOM_DIR
+from Load import KITCHEN_DIR, NEIGHBOURHOOD_DIR, CAMPUS_DIR
 
 def create_backgrounds(screen_width, screen_height):
 
@@ -25,7 +25,36 @@ def create_backgrounds(screen_width, screen_height):
             screen_width,
             screen_height,
             left_target="bedroom",
-            right_target="bus_stop"
+            right_target="neighbourhood"
+        ),
+        "neighbourhood": Background(
+            load_image("Neighbourhood.png", None, NEIGHBOURHOOD_DIR),
+            screen_width,
+            screen_height,
+            left_target="kitchen"
+        ),
+        "campus": Background(
+            load_image("Background.png", None, CAMPUS_DIR),
+            screen_width,
+            screen_height,
+            left_target="neighbourhood"
+        ),
+        "class": Background(
+            load_image("ClassRoom.png", (320, 180), BACKGROUND_DIR),
+            screen_width,
+            screen_height,
+            right_target="rooftop"
+        ),
+        "studyroom": Background(
+            load_image("StudyRoom.png", (320, 180), BACKGROUND_DIR),
+            screen_width,
+            screen_height,
+            right_target="rooftop"
+        ),
+        "rooftop": Background(
+            load_image("Rooftop.png", None, BACKGROUND_DIR),
+            screen_width,
+            screen_height
         )
     }
 
@@ -34,12 +63,18 @@ def create_backgrounds(screen_width, screen_height):
 def create_buttons(button_width, button_height):
     size = (button_width, button_height)
 
-    start_buttons = {
-        "regular": load_image("StartRegular.png", size, BUTTON_DIR),
+    buttons = {
+        "start_regular": load_image("StartRegular.png", size, BUTTON_DIR),
 
         "start_hover": load_image("StartHover.png", size, BUTTON_DIR),
 
-        "start_click": load_image("StartClick.png", size, BUTTON_DIR)
+        "start_click": load_image("StartClick.png", size, BUTTON_DIR),
+
+        "exit_regular": load_image("ExitRegular.png", size, BUTTON_DIR),
+        
+        "exit_hover": load_image("ExitHover.png", size, BUTTON_DIR),
+
+        "exit_click": load_image("ExitClick.png", size, BUTTON_DIR),
     }
 
-    return start_buttons
+    return buttons

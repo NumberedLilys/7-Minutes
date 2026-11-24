@@ -1,7 +1,9 @@
 import pygame
+from Audio import audio
 
-#Implimenting text_wrap 
 def text_wrap(text, font, max_width):
+    # Measure with the actual font so wrapping accounts for glyph widths rather
+    # than assuming every character takes the same amount of space.
     words = text.split()
     lines = []
     current_line = ""
@@ -13,7 +15,23 @@ def text_wrap(text, font, max_width):
         else:
             if current_line:
                 lines.append(current_line)
-            current_line = word
+
+            # Keep normal words intact; only break a word when it is wider than
+            # the entire available line by itself.
+            if font.size(word)[0] <= max_width:
+                current_line = word
+                continue
+
+            # Build a too-wide word character by character, flushing each
+            # segment as soon as adding another character would exceed max_width.
+            # Split unusually long words so no rendered line exceeds the box width.
+            current_line = ""
+            for character in word:
+                if current_line and font.size(current_line + character)[0] > max_width:
+                    lines.append(current_line)
+                    current_line = character
+                else:
+                    current_line += character
 
     if current_line:
         lines.append(current_line)
@@ -26,6 +44,7 @@ class DialogueManager:
         self.box_image = box_image
         self.nameplates = nameplates
         self.scale = scale
+        self.choice_history = []
 
         self.dialogue_queue = []
 
@@ -43,6 +62,7 @@ class DialogueManager:
         self.current_node_id = start_node # sets starting point with "start" default
         self.selected_index = 0 # resets starting index point
         self.active = True # sets dialogue to appear on screen
+        audio.play_dialogue_line(tree[start_node].get("speaker"))
 
     def _select_option(self, index): # option selection, sets next node
         options = self.tree[self.current_node_id].get("options", []) # get list of options from dictionary
@@ -52,6 +72,8 @@ class DialogueManager:
             return
 
         selected_option = options[index]
+        if "ending_entry" in selected_option and selected_option["ending_entry"] not in self.choice_history:
+            self.choice_history.append(selected_option["ending_entry"])
 
         action = selected_option.get("action")
 
@@ -65,6 +87,7 @@ class DialogueManager:
         else:
             self.current_node_id = next_node # set curerent node to next one
             self.selected_index = 0 # reset choice index
+            audio.play_dialogue_line(self.tree[next_node].get("speaker"))
 
     def handle_event(self, event):
         if not self.active:
@@ -77,6 +100,8 @@ class DialogueManager:
                 if self.option_rects[i].collidepoint(
                     (event.pos[0] / self.scale, event.pos[1] / self.scale)
                 ):
+                    if self.selected_index != i:
+                        audio.play_sound("click")
                     self.selected_index = i
 
         elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1: # if click using mouse
@@ -93,9 +118,11 @@ class DialogueManager:
 
             if event.key == pygame.K_UP:
                 self.selected_index = (self.selected_index - 1) % len(options)
+                audio.play_sound("click")
 
             elif event.key == pygame.K_DOWN:
                 self.selected_index = (self.selected_index + 1) % len(options)
+                audio.play_sound("click")
 
             elif event.key in (pygame.K_RETURN, pygame.K_SPACE): # if enter or space bar, select option
                 self._select_option(self.selected_index)
@@ -121,35 +148,68 @@ class DialogueManager:
             return
 
         node = self.tree[self.current_node_id] # set current node from dictionary
-        screen_w, screen_h = surface.get_size()
-        box_w, box_h =280, 50
+        box_w, box_h = 280, 50 # was 280, 50
+        padding = 8
+        text_top_padding = 12
+        line_height = self.font.get_linesize()
+        text_lines = text_wrap(node["text"], self.font, box_w - padding * 2)
+
+        options = node.get("options", []) or []
+        # Choices are indented inside the box. Reserve space for both that indent
+        # and the selection marker before wrapping their text.
+        text_x_offset = padding + 15
+        option_width = box_w - padding - text_x_offset
+        prefix_width = self.font.size("   ")[0]
+        wrapped_options = [
+            text_wrap(option["text"], self.font, option_width - prefix_width)
+            for option in options
+        ]
+        # Leave a small gap between successive rendered lines within an option.
+        line_spacing = line_height + 1
+
+        # Calculate the height from wrapped text and choices before drawing.
+        # This lets the background grow with the content while keeping the
+        # original 50-pixel height for short dialogue.
+        options_height = sum(len(lines) * line_spacing for lines in wrapped_options)
+        if options:
+            options_height += 2
+        content_height = (
+            text_top_padding
+            + len(text_lines) * line_height
+            + options_height
+            + padding
+        )
+        box_h = max(box_h, content_height)
+        screen_h = surface.get_height()
+        # Keep the original position for short dialogue. As the box grows, move
+        # it upward only as far as needed, while reserving room for the nameplate.
+        box_top = min(screen_h - box_h - 8, screen_h - 50 - 115)
+        box_top = max(8, box_top)
+
         box_rect = pygame.Rect(
             (surface.get_width() - box_w) // 2,
-            surface.get_height() - box_h -115,
+            box_top,
             box_w,
             box_h,
         )
-        surface.blit(self.box_image, box_rect)
+        # Stretch the existing artwork to the measured height without changing its width.
+        stretched_box = pygame.transform.scale(self.box_image, box_rect.size)
+        surface.blit(stretched_box, box_rect)
 
         speaker_key = node.get("speaker") # get matching name
         if speaker_key in self.nameplates:
             plate_img = self.nameplates[speaker_key]
+            # Keep the plate overlapping the box as before, but clamp its top to
+            # the screen so tall dialogue cannot push it out of view.
             name_rect = plate_img.get_rect(
                 topleft=(box_rect.left + 8, 
-                         box_rect.top - plate_img.get_height() + 4)
+                         max(0, box_rect.top - plate_img.get_height() + 8)) # 4
                          ) # estimated numbers
             
             surface.blit(plate_img, name_rect) # draw nameplate over top left of text box
-        padding = 8
         text_x = box_rect.left + padding
-        text_y = box_rect.top + 12
-        line_height = self.font.get_linesize()
-        text_lines = text_wrap(node["text"], self.font, box_w - padding * 2)
+        text_y = box_rect.top + text_top_padding
 
-        #text_lines is a list of wrapped strings from above functino
-        #enumerate goes through that list and provides each line's index and text
-        #text_surface is the drawable piece of text surface.blit can display 
-        
         for line_number, line in enumerate(text_lines):
             text_surface = self.font.render(line, True, (255, 255, 255))
             surface.blit(text_surface, (text_x, text_y + line_number * line_height))
@@ -158,18 +218,31 @@ class DialogueManager:
         self.option_rects = []
         options = node.get("options", []) or [] # get all options for current node/text in dictionary
         options_start_y = text_y + len(text_lines) * line_height + 2
-        line_spacing = line_height + 1
 
-        for i in range(len(options)): # go through each option
-            option = options[i] # current option 
-            is_selected = (i == self.selected_index) # shows which option player is on
-            prefix = "> " if is_selected else "   " 
-            color = (255, 225, 110) if is_selected else (200, 200, 200) # highlighting for visual cue
+        # Give each choice a hitbox spanning all of its wrapped lines.
+        for i, option in enumerate(options):
+            is_selected = i == self.selected_index
+            prefix = "> " if is_selected else "   "
+            color = (255, 225, 110) if is_selected else (200, 200, 200)
+            option_x = text_x + 15
+            option_y = options_start_y
+            option_lines = wrapped_options[i]
 
-            opt_surf = self.font.render(prefix + option["text"], True, color) # set up text
-            opt_rect = opt_surf.get_rect(topleft=(text_x + 15, options_start_y + i * line_spacing)) # hitbox area
+            self.option_rects.append(
+                pygame.Rect(
+                    option_x,
+                    option_y,
+                    option_width,
+                    len(option_lines) * line_spacing,
+                )
+            )
 
-            click_rect = opt_rect.inflate(20, 8) # creates larger clickable area than text (+10 on either x, +4 on either y)
-            self.option_rects.append(click_rect) # saves each option hitbox to list in order
+            for line_number, line in enumerate(option_lines):
+                line_prefix = prefix if line_number == 0 else "   "
+                option_surface = self.font.render(line_prefix + line, True, color)
+                surface.blit(
+                    option_surface,
+                    (option_x, option_y + line_number * line_spacing),
+                )
 
-            surface.blit(opt_surf, opt_rect) # prints each option onto screen
+            options_start_y += len(option_lines) * line_spacing

@@ -1,5 +1,4 @@
 import pygame
-#from dialogueTest import startInteraction
 
 class Object:
     def __init__(self, name, image, item_x, item_y,

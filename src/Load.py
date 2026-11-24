@@ -5,11 +5,17 @@ ROOT_DIR = pathlib.Path(__file__).parent.parent
 MAYNNE_DIR = ROOT_DIR / "assets" / "characters" / "Maynne"
 WALK_DIR = MAYNNE_DIR / "Walk"
 IDLE_DIR = MAYNNE_DIR / "Idle"
+LYRA_DIR = ROOT_DIR / "assets" / "characters" / "Lyra"
+DEATH_DIR = ROOT_DIR / "assets" / "characters" / "Death"
+AUDRA_DIR = ROOT_DIR / "assets" / "characters" / "Audra"
 
 BACKGROUND_DIR = ROOT_DIR / "assets" / "environments"
 BEDROOM_DIR = BACKGROUND_DIR / "Bedroom"
 BEDROOM_OBJECT_DIR = BEDROOM_DIR / "Objects"
 KITCHEN_DIR = BACKGROUND_DIR / "Kitchen"
+NEIGHBOURHOOD_DIR = BACKGROUND_DIR/"Neighbourhood"
+CAMPUS_DIR = BACKGROUND_DIR/ "Campus"
+
 START_DIR = BACKGROUND_DIR / "StartScreen"
 BUTTON_DIR = START_DIR / "Buttons"
 
@@ -53,10 +59,21 @@ def load_animations(size):
     idle_right = [load_image(f"MaynneIdle_{i:04d}.png", size, IDLE_DIR) for i in range(1, 10)]
     idle_left = [pygame.transform.flip(f, True, False) for f in idle_right]
 
+    lyra_idle = [load_image(f"LyraIdle_{i:04d}.png", size, LYRA_DIR) for i in range(1, 12)]
+
+    death_idle_right = [load_image(f"ReaperIdle_{i:04d}.png", size, DEATH_DIR) for i in range(1, 5)]
+    death_idle = [pygame.transform.flip(f, True, False) for f in death_idle_right]
+
+    audra_idle_right = [load_image(f"AudraIdle_{i:04d}.png", size, AUDRA_DIR) for i in range(1, 10)]
+    audra_idle = [pygame.transform.flip(f, True, False) for f in audra_idle_right]
+
     return {
         "walk_right": walk_right,
         "walk_left": walk_left,
         "idle_right": idle_right,
         "idle_left": idle_left,
+        "lyra_idle": lyra_idle,
+        "death_idle": death_idle,
+        "audra_idle": audra_idle
     }
 
