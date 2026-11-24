@@ -1,4 +1,5 @@
 import pygame
+from Audio import audio
 
 def text_wrap(text, font, max_width):
     # Measure with the actual font so wrapping accounts for glyph widths rather
@@ -61,6 +62,7 @@ class DialogueManager:
         self.current_node_id = start_node # sets starting point with "start" default
         self.selected_index = 0 # resets starting index point
         self.active = True # sets dialogue to appear on screen
+        audio.play_dialogue_line(tree[start_node].get("speaker"))
 
     def _select_option(self, index): # option selection, sets next node
         options = self.tree[self.current_node_id].get("options", []) # get list of options from dictionary
@@ -85,6 +87,7 @@ class DialogueManager:
         else:
             self.current_node_id = next_node # set curerent node to next one
             self.selected_index = 0 # reset choice index
+            audio.play_dialogue_line(self.tree[next_node].get("speaker"))
 
     def handle_event(self, event):
         if not self.active:
@@ -97,6 +100,8 @@ class DialogueManager:
                 if self.option_rects[i].collidepoint(
                     (event.pos[0] / self.scale, event.pos[1] / self.scale)
                 ):
+                    if self.selected_index != i:
+                        audio.play_sound("click")
                     self.selected_index = i
 
         elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1: # if click using mouse
@@ -113,9 +118,11 @@ class DialogueManager:
 
             if event.key == pygame.K_UP:
                 self.selected_index = (self.selected_index - 1) % len(options)
+                audio.play_sound("click")
 
             elif event.key == pygame.K_DOWN:
                 self.selected_index = (self.selected_index + 1) % len(options)
+                audio.play_sound("click")
 
             elif event.key in (pygame.K_RETURN, pygame.K_SPACE): # if enter or space bar, select option
                 self._select_option(self.selected_index)
