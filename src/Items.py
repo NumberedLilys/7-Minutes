@@ -103,6 +103,12 @@ def create_kitchen_items():
             load_image("CoatRack.png", None, KITCHEN_DIR),
             768, 64,
             dialogue = KITCHEN_DIALOGUE["coat rack"]
+        ),
+        "mom": Object(
+            "Mom",
+            load_image("MomAndTable.png", None, KITCHEN_DIR),
+            68,62,
+            dialogue= KITCHEN_DIALOGUE['mom']
         )
 
     }

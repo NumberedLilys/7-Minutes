@@ -115,6 +115,16 @@ KITCHEN_DIALOGUE = {
                 "text": "It's a coat rack.",
                 "options": [{"text": "Next", "next": None}]
             }
+    },
+    "mom":{
+        "start":{
+        "speaker": "Mom",
+        "text": "Hey hun! Made you some pancakes, they're on the counter.",
+        "options": [
+            {"text": "Thanks mom!", "next": None},
+            {"text": "...", "next": None, "ending_entry": "Ignored mom at breakfast"}
+            ]
+        }
     }
 
 }

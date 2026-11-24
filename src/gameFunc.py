@@ -63,12 +63,18 @@ def game():
     audra_state = {
         "talked_to": False
     }
+    mother_state = {
+        "talked_to": False
+    }
+
     flower_state = {
         "interacted": False
     }
+
     lyra_state = {
         "pet": False
     }
+
     current_background = "bedroom"
     my_character.world_width = backgrounds[current_background].world_width
 
@@ -87,6 +93,9 @@ def game():
     def start_ending_text():
         if audra_state["talked_to"] == False:
             dialogue.choice_history.append("Never spoke to Audra")
+
+        if mother_state["talked_to"] == False:
+            dialogue.choice_history.append("Never spoke to Mom")
 
         if flower_state["interacted"] == False:
             dialogue.choice_history.append("Didn't throw out flowers, letting Lyra die")
@@ -154,29 +163,30 @@ def game():
                 mouse_y = event.pos[1]/ SCALE
 
                 logic_mouse_pos = (mouse_x, mouse_y)
+
                 if current_background == "bedroom":
                     camera_x = backgrounds[current_background].camera_x
 
-                    #converting window mouse position to logical game coords
-                    mouse_x = event.pos[0]/ SCALE + camera_x
-                    mouse_y = event.pos[1]/ SCALE
+                    # Convert window mouse position to logical game coordinates
+                    mouse_x = event.pos[0] / SCALE + camera_x
+                    mouse_y = event.pos[1] / SCALE
 
                     logic_mouse_pos = (mouse_x, mouse_y)
 
-                    flower_dialogue = bedroom_items["flowers"]
-                    triggered = flower_dialogue.check_click(logic_mouse_pos)
+                    for item_name, item in bedroom_items.items():
 
-                    lyra_dialogue = bedroom_items["lyra"]
-                    triggered_lyra = lyra_dialogue.check_click(logic_mouse_pos)
+                        if item_name == "Lyra" and lyra_state["pet"]:
+                            continue
 
-                    for item in bedroom_items.values():
                         triggered_dialogue = item.check_click(logic_mouse_pos)
 
                         if triggered_dialogue:
                             dialogue.start(triggered_dialogue)
-                            if triggered:
+
+                            if item_name == "flowers":
                                 flower_state["interacted"] = True
-                            if triggered_lyra:
+
+                            elif item_name == "Lyra":
                                 lyra_state["pet"] = True
 
                             break
@@ -184,7 +194,19 @@ def game():
                 elif current_background == "kitchen":
                     camera_x = backgrounds[current_background].camera_x
 
-                    for item in kitchen_items.values():
+                    mother_dialogue = kitchen_items["mom"]
+
+                    if not mother_state["talked_to"]:
+                        triggered = mother_dialogue.check_click(logic_mouse_pos)
+
+                        if triggered:
+                            dialogue.start(triggered)
+                            mother_state["talked_to"] = True
+
+                    for item_name, item in kitchen_items.items():
+                        if item_name == "mom":
+                            continue
+
                         triggered_dialogue = item.check_click(logic_mouse_pos)
 
                         if triggered_dialogue:
