@@ -226,11 +226,11 @@ def game():
 
                     elif studyroom.hitbox.collidepoint((mouse_x, mouse_y)):
                         dialogue.start(studyroom_dialogue)
-                        CAMPUS_DIALOGUE["study group"]["go to study group"]["options"][0]["action"] = lambda : clicked("study")
+                        CAMPUS_DIALOGUE["study group"]["go to study group"]["options"][0]["action"] = lambda : clicked("studyroom")
 
                     elif roof.hitbox.collidepoint((mouse_x, mouse_y)):
                         dialogue.start(roof_dialogue)
-                        CAMPUS_DIALOGUE["roof"]["go to roof"]["options"][0]["action"] = lambda : clicked("roof")
+                        CAMPUS_DIALOGUE["roof"]["go to roof"]["options"][0]["action"] = lambda : clicked("rooftop")
         
         all_sprites.update(dt, dialogue.active)
         if current_background == "rooftop":
