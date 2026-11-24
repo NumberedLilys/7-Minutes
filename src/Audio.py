@@ -8,7 +8,7 @@
     audio.play_sound("click")           when a menu option is moved or picked
 
 Music and ambience loop until the next scene begins.
-Scene names: bedroom, living_room, kitchen, outside, bus, hallway, study, death.
+Scene names: bedroom, kitchen, neighbourhood, campus, class, studyroom, rooftop, bus.
 
 To add a sound: put the file in assets/audio and add a line to SOUNDS.
 Credits are in assets/audio/CREDITS.md.
@@ -28,23 +28,25 @@ SOUNDS = {
     "morning": ("Morning ambience.wav", 0.2),
     "outdoor": ("Outdoor ambience.wav", 0.6),
     "bus": ("Inside bus.wav", 0.6),
-    "hallway": ("Hallway.wav", 0.3),
+    "hallway": ("Hallway.wav", 0.03),
     "study": ("Quiet study.wav", 0.5),
-    "death": ("Death.wav", 0.4),
+    "death": ("Death.wav", 0.25),
     "lyra": ("Lyra noises.wav", 0.5),
     "click": ("Click and textbox.flac", 0.6),
     "textbox": ("Click and textbox.flac", 0.3),
 }
 
+FADE_IN_MS = {"death": 9000}
+
 SCENE_AMBIENCE = {
     "bedroom": "morning",
-    "living_room": "morning",
     "kitchen": "morning",
-    "outside": "outdoor",
+    "neighbourhood": "outdoor",
+    "campus": "hallway",
+    "class": "study",
+    "studyroom": "study",
+    "rooftop": "death",
     "bus": "bus",
-    "hallway": "hallway",
-    "study": "study",
-    "death": "death",
 }
 
 
