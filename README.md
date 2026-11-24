@@ -6,6 +6,11 @@
 
 The game explores themes of relationships, time, missed opportunities, and regret. It does so through conversations, player choices, and character interactions.
 
+**How to Play:**
+Hosted on Itch.io, simply download and extract the files, and press play on the 7-Minutes application file!
+ 
+Play here: https://reighnstudio.itch.io/7-minutes
+
 **Story**
 
 The game begins in Maynne's bedroom, where she is getting ready for another busy university day. She has classes to attend, messages to reply to, and people she keeps meaning to spend more time with.
