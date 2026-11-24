@@ -1,1 +1,0 @@
-Sub folder for containing interactable objects found within the game
